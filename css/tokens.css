@@ -1,0 +1,146 @@
+/* =========================================================================
+   0% EXPERIMENT — DESIGN TOKENS
+   Derived from: 0_percent_experiment_brandbook_NL.pdf
+   Single source of truth. Change a value here, it changes everywhere.
+   ========================================================================= */
+
+:root {
+	/* ---------------------------------------------------------------------
+	   01 · COLOUR
+	   Brandbook §02. Balance: crème dominates, antraciet gives structure,
+	   fluogroen works like a highlighter pen (never a full-page background),
+	   petrol supports and must never compete with the fluogroen.
+	   --------------------------------------------------------------------- */
+
+	/* Core brand — the four official colours */
+	--color-creme: #f5f1e8; /* Warm crème  · primary background, use generously */
+	--color-antraciet: #1d1d1d; /* Antraciet   · primary text & contrast        */
+	--color-fluo: #d7ff00; /* Fluogroen   · signature accent, use sparingly  */
+	--color-petrol: #173c46; /* Donker petrol · depth, blocks, contrast       */
+
+	/* Tints & shades — derived, never invented. Kept minimal on purpose. */
+	--color-creme-50: #fbf9f4; /* lifted crème — cards on a crème canvas       */
+	--color-creme-100: #f5f1e8; /* = crème                                      */
+	--color-creme-200: #ebe5d7; /* hairlines, dividers, quiet fills             */
+	--color-creme-300: #ddd5c2; /* borders with more presence                   */
+
+	--color-antraciet-900: #121212; /* deepest — hero blocks                   */
+	--color-antraciet-800: #1d1d1d; /* = antraciet                             */
+	--color-antraciet-600: #3d3d3d; /* secondary text on crème                 */
+	--color-antraciet-400: #5f5f5f; /* tertiary / meta text — 5.4:1 on crème, AA */
+
+	--color-fluo-hover: #c2e600; /* button hover — darker, never lighter       */
+	--color-fluo-soft: rgba(215, 255, 0, 0.28); /* marker-pen highlight fill   */
+
+	--color-petrol-900: #0f2a31; /* petrol, deeper                            */
+	--color-petrol-700: #173c46; /* = petrol                                  */
+	--color-petrol-500: #2b5c69; /* petrol, lifted — borders on petrol blocks */
+	--color-petrol-200: #a8c3c9; /* muted text on petrol                      */
+
+	/* Semantic — what a component asks for, not what colour it is */
+	--color-surface: var(--color-creme);
+	--color-surface-raised: var(--color-creme-50);
+	--color-surface-invert: var(--color-antraciet);
+	--color-surface-deep: var(--color-petrol);
+
+	--color-ink: var(--color-antraciet);
+	--color-ink-muted: var(--color-antraciet-600);
+	--color-ink-faint: var(--color-antraciet-400);
+	--color-ink-invert: var(--color-creme);
+
+	--color-accent: var(--color-fluo);
+	--color-accent-ink: var(--color-antraciet); /* text ON fluogroen — always antraciet */
+
+	--color-line: var(--color-creme-200);
+	--color-line-strong: var(--color-creme-300);
+
+	/* Feedback — deliberately quiet. This brand does not scold. */
+	--color-positive: #2f7a4f;
+	--color-notice: var(--color-petrol);
+	--color-critical: #a8321f;
+
+	/* ---------------------------------------------------------------------
+	   02 · TYPOGRAPHY
+	   Brandbook §04. Sora for titles, statements, buttons, brand moments.
+	   Inter for long copy, forms, FAQ, checkout — readability first.
+	   --------------------------------------------------------------------- */
+	--font-display: 'Sora Variable', 'Sora', ui-sans-serif, system-ui, sans-serif;
+	--font-body: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+	/* Type scale — fluid, editorial. Titles may be big and confident. */
+	--text-display: clamp(2.75rem, 1.6rem + 5.6vw, 6.5rem);
+	--text-display--line-height: 0.94;
+	--text-display--letter-spacing: -0.035em;
+
+	--text-h1: clamp(2.25rem, 1.4rem + 3.8vw, 4.25rem);
+	--text-h1--line-height: 1;
+	--text-h1--letter-spacing: -0.03em;
+
+	--text-h2: clamp(1.75rem, 1.2rem + 2.4vw, 3rem);
+	--text-h2--line-height: 1.06;
+	--text-h2--letter-spacing: -0.025em;
+
+	--text-h3: clamp(1.375rem, 1.1rem + 1.1vw, 1.875rem);
+	--text-h3--line-height: 1.15;
+	--text-h3--letter-spacing: -0.015em;
+
+	--text-lead: clamp(1.125rem, 1.02rem + 0.5vw, 1.375rem);
+	--text-lead--line-height: 1.55;
+
+	--text-body: 1.0625rem;
+	--text-body--line-height: 1.7;
+
+	--text-small: 0.9375rem;
+	--text-small--line-height: 1.6;
+
+	--text-label: 0.75rem;
+	--text-label--line-height: 1.2;
+	--text-label--letter-spacing: 0.18em;
+
+	/* ---------------------------------------------------------------------
+	   03 · SPACE
+	   Brandbook §06: "Veel ademruimte en sterk contrast."
+	   8px base. Section rhythm is generous by default.
+	   --------------------------------------------------------------------- */
+	--spacing: 0.25rem;
+
+	--space-section: clamp(4.5rem, 3rem + 7vw, 9rem); /* vertical section padding */
+	--space-block: clamp(2rem, 1.5rem + 2.4vw, 3.5rem); /* between blocks in a section */
+	--space-gutter: clamp(1.25rem, 0.8rem + 2vw, 2.5rem); /* page side gutter */
+
+	--container-reading: 42rem; /* long-form copy — never wider */
+	--container-content: 64rem; /* standard content width */
+	--container-wide: 80rem; /* full layout width */
+
+	/* ---------------------------------------------------------------------
+	   04 · SHAPE
+	   Editorial, not bubbly. Small radii; the brand's softness comes from
+	   the brush texture in the logo, not from rounded corners.
+	   --------------------------------------------------------------------- */
+	--radius-sm: 0.25rem;
+	--radius-md: 0.5rem;
+	--radius-lg: 0.875rem;
+	--radius-pill: 999px;
+
+	--border-hair: 1px;
+	--border-strong: 2px;
+
+	/* ---------------------------------------------------------------------
+	   05 · ELEVATION
+	   Barely-there. The brandbook forbids drop shadows on the logo and the
+	   look is flat/editorial, so shadows only lift interactive surfaces.
+	   --------------------------------------------------------------------- */
+	--shadow-raised: 0 1px 2px rgba(29, 29, 29, 0.04), 0 8px 24px rgba(29, 29, 29, 0.06);
+	--shadow-lifted: 0 2px 4px rgba(29, 29, 29, 0.06), 0 18px 40px rgba(29, 29, 29, 0.1);
+
+	/* ---------------------------------------------------------------------
+	   06 · MOTION
+	   Curious, not bouncy. Quick, confident, never playful-cartoonish.
+	   --------------------------------------------------------------------- */
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+	--dur-fast: 140ms;
+	--dur-base: 240ms;
+	--dur-slow: 520ms;
+	--dur-enter: 700ms; /* page-entrance choreography — see css/motion.css */
+}

@@ -1,0 +1,485 @@
+/* =========================================================================
+   0% EXPERIMENT — UTILITIES & COMPONENT CLASSES
+   Brandbook §06 "Grafische taal": circles, cut-outs, underlines, marked
+   words and enlarged details. Fluogroen behaves like a highlighter pen.
+   ========================================================================= */
+
+@layer components {
+	/* ---------------------------------------------------------------------
+	   LAYOUT
+	   --------------------------------------------------------------------- */
+	.o-container {
+		width: 100%;
+		max-width: var(--container-wide);
+		margin-inline: auto;
+		padding-inline: var(--space-gutter);
+	}
+	.o-container--content {
+		max-width: var(--container-content);
+	}
+	.o-container--reading {
+		max-width: var(--container-reading);
+	}
+
+	.o-section {
+		padding-block: var(--space-section);
+	}
+	.o-section--tight {
+		padding-block: calc(var(--space-section) * 0.55);
+	}
+
+	/* Surfaces. Crème is the canvas; the other two are deliberate breaks. */
+	.u-surface-creme {
+		background-color: var(--color-creme);
+		color: var(--color-ink);
+	}
+	.u-surface-raised {
+		background-color: var(--color-surface-raised);
+		color: var(--color-ink);
+	}
+	.u-surface-ink {
+		background-color: var(--color-antraciet);
+		color: var(--color-ink-invert);
+	}
+	.u-surface-petrol {
+		background-color: var(--color-petrol);
+		color: var(--color-ink-invert);
+	}
+	.u-surface-ink :is(h1, h2, h3, h4, h5, h6),
+	.u-surface-petrol :is(h1, h2, h3, h4, h5, h6) {
+		color: var(--color-ink-invert);
+	}
+
+	/* ---------------------------------------------------------------------
+	   TYPOGRAPHY HELPERS
+	   --------------------------------------------------------------------- */
+	.t-display {
+		font-family: var(--font-display);
+		font-size: var(--text-display);
+		line-height: var(--text-display--line-height);
+		letter-spacing: var(--text-display--letter-spacing);
+		font-weight: 800;
+	}
+	.t-h1 {
+		font-family: var(--font-display);
+		font-size: var(--text-h1);
+		line-height: var(--text-h1--line-height);
+		letter-spacing: var(--text-h1--letter-spacing);
+		font-weight: 800;
+	}
+	.t-h2 {
+		font-family: var(--font-display);
+		font-size: var(--text-h2);
+		line-height: var(--text-h2--line-height);
+		letter-spacing: var(--text-h2--letter-spacing);
+		font-weight: 700;
+	}
+	.t-h3 {
+		font-family: var(--font-display);
+		font-size: var(--text-h3);
+		line-height: var(--text-h3--line-height);
+		letter-spacing: var(--text-h3--letter-spacing);
+		font-weight: 700;
+	}
+	.t-lead {
+		font-size: var(--text-lead);
+		line-height: var(--text-lead--line-height);
+		color: var(--color-ink-muted);
+	}
+	.u-surface-ink .t-lead,
+	.u-surface-petrol .t-lead {
+		color: color-mix(in srgb, var(--color-creme) 78%, transparent);
+	}
+	.t-small {
+		font-size: var(--text-small);
+		line-height: var(--text-small--line-height);
+	}
+
+	/* Eyebrow / label. Caps are fine for short labels only (brandbook §04). */
+	.t-eyebrow {
+		font-family: var(--font-display);
+		font-size: var(--text-label);
+		line-height: var(--text-label--line-height);
+		letter-spacing: var(--text-label--letter-spacing);
+		text-transform: uppercase;
+		font-weight: 600;
+		color: var(--color-ink-faint);
+	}
+	.u-surface-ink .t-eyebrow,
+	.u-surface-petrol .t-eyebrow {
+		color: var(--color-accent);
+	}
+
+	/* Long-form reading rhythm, Inter. Used for body copy blocks. */
+	.t-prose > * + * {
+		margin-top: 1.15em;
+	}
+	.t-prose :is(h2, h3) {
+		margin-top: 2em;
+		margin-bottom: 0.6em;
+	}
+	.t-prose strong {
+		font-weight: 600;
+	}
+
+	/* The brand's "one question per line" cadence — short lines, air between. */
+	.t-cadence > * + * {
+		margin-top: 0.85em;
+	}
+
+	/* ---------------------------------------------------------------------
+	   GRAFISCHE TAAL — the marker pen, the circle, the underline
+	   --------------------------------------------------------------------- */
+
+	/* Marked word. Sits behind the text like a highlighter stripe. */
+	.u-mark {
+		background-image: linear-gradient(
+			to bottom,
+			transparent 8%,
+			var(--color-accent) 8%,
+			var(--color-accent) 92%,
+			transparent 92%
+		);
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
+		padding-inline: 0.12em;
+		color: var(--color-accent-ink);
+	}
+	/* Softer variant for longer runs of text — still legible underneath. */
+	.u-mark--soft {
+		background-image: linear-gradient(
+			to bottom,
+			transparent 45%,
+			var(--color-fluo-soft) 45%
+		);
+		color: inherit;
+	}
+	.u-surface-ink .u-mark--soft,
+	.u-surface-petrol .u-mark--soft {
+		color: var(--color-ink-invert);
+	}
+
+	/* Hand-drawn-feeling underline, echoing the rule under the wordmark. */
+	.u-underline {
+		background-image: linear-gradient(to right, var(--color-accent), var(--color-accent));
+		background-repeat: no-repeat;
+		background-position: 0 92%;
+		background-size: 100% 0.22em;
+		padding-bottom: 0.06em;
+	}
+
+	/* Circled word — an observation ring, the magnifier motif in text. */
+	.u-circled {
+		position: relative;
+		display: inline-block;
+		padding-inline: 0.35em;
+	}
+	.u-circled::after {
+		content: '';
+		position: absolute;
+		inset: -0.28em -0.1em -0.34em;
+		border: var(--border-strong) solid var(--color-accent);
+		border-radius: 50%;
+		transform: rotate(-2.5deg) scaleX(1.04);
+		pointer-events: none;
+	}
+
+	/* Lens: a circular cut-out frame for imagery and numbers. */
+	.u-lens {
+		border-radius: 50%;
+		overflow: hidden;
+		aspect-ratio: 1;
+		position: relative;
+	}
+	.u-lens--ring {
+		box-shadow: 0 0 0 var(--border-strong) var(--color-accent);
+	}
+
+	/* Enlarged detail — an oversized figure used as a graphic element. */
+	.u-figure {
+		font-family: var(--font-display);
+		font-weight: 800;
+		font-size: clamp(3.5rem, 2rem + 7vw, 8rem);
+		line-height: 0.85;
+		letter-spacing: -0.05em;
+	}
+
+	/* Hairline rule with a fluogroen segment, echoing the logo rule. */
+	.u-rule {
+		height: 2px;
+		background: linear-gradient(
+			to right,
+			var(--color-accent) 0 3.5rem,
+			var(--color-line-strong) 3.5rem 100%
+		);
+		border: 0;
+	}
+	.u-surface-ink .u-rule,
+	.u-surface-petrol .u-rule {
+		background: linear-gradient(
+			to right,
+			var(--color-accent) 0 3.5rem,
+			color-mix(in srgb, var(--color-creme) 25%, transparent) 3.5rem 100%
+		);
+	}
+
+	/* ---------------------------------------------------------------------
+	   BUTTONS
+	   Primary = fluogroen fill with antraciet text (brandbook §08).
+	   --------------------------------------------------------------------- */
+	.c-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.6em;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 1rem;
+		line-height: 1;
+		letter-spacing: -0.01em;
+		padding: 1.05rem 1.75rem;
+		border: var(--border-strong) solid transparent;
+		border-radius: var(--radius-pill);
+		cursor: pointer;
+		text-decoration: none;
+		text-align: center;
+		transition:
+			background-color var(--dur-fast) var(--ease-out),
+			border-color var(--dur-fast) var(--ease-out),
+			color var(--dur-fast) var(--ease-out),
+			transform var(--dur-fast) var(--ease-out);
+	}
+	.c-btn:active {
+		transform: translateY(1px);
+	}
+	.c-btn[disabled],
+	.c-btn[aria-disabled='true'] {
+		opacity: 0.45;
+		pointer-events: none;
+	}
+
+	.c-btn--primary {
+		background-color: var(--color-accent);
+		color: var(--color-accent-ink);
+		border-color: var(--color-accent);
+	}
+	.c-btn--primary:hover {
+		background-color: var(--color-fluo-hover);
+		border-color: var(--color-fluo-hover);
+	}
+
+	.c-btn--secondary {
+		background-color: transparent;
+		color: var(--color-ink);
+		border-color: var(--color-ink);
+	}
+	.c-btn--secondary:hover {
+		background-color: var(--color-ink);
+		color: var(--color-ink-invert);
+	}
+	.u-surface-ink .c-btn--secondary,
+	.u-surface-petrol .c-btn--secondary {
+		color: var(--color-ink-invert);
+		border-color: color-mix(in srgb, var(--color-creme) 55%, transparent);
+	}
+	.u-surface-ink .c-btn--secondary:hover,
+	.u-surface-petrol .c-btn--secondary:hover {
+		background-color: var(--color-creme);
+		color: var(--color-antraciet);
+		border-color: var(--color-creme);
+	}
+
+	.c-btn--ghost {
+		background: transparent;
+		border-color: transparent;
+		padding-inline: 0.25rem;
+		text-decoration: underline;
+		text-decoration-color: var(--color-accent);
+		text-decoration-thickness: 2px;
+	}
+	.c-btn--ghost:hover {
+		color: var(--color-ink-muted);
+	}
+
+	.c-btn--lg {
+		font-size: 1.125rem;
+		padding: 1.25rem 2.25rem;
+	}
+	.c-btn--block {
+		width: 100%;
+	}
+
+	/* ---------------------------------------------------------------------
+	   CARDS & BLOCKS
+	   --------------------------------------------------------------------- */
+	.c-card {
+		background-color: var(--color-surface-raised);
+		border: var(--border-hair) solid var(--color-line);
+		border-radius: var(--radius-lg);
+		padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+	}
+	.c-card--interactive {
+		transition:
+			transform var(--dur-base) var(--ease-out),
+			box-shadow var(--dur-base) var(--ease-out),
+			border-color var(--dur-base) var(--ease-out);
+	}
+	.c-card--interactive:hover {
+		transform: translateY(-3px);
+		box-shadow: var(--shadow-raised);
+		border-color: var(--color-line-strong);
+	}
+
+	/* Quote / statement block — the brand's "one strong line" moment. */
+	.c-statement {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: var(--text-h2);
+		line-height: 1.12;
+		letter-spacing: -0.025em;
+		text-wrap: balance;
+	}
+
+	/* Question list — one question per line, the core content pattern. */
+	.c-questions {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.55rem;
+	}
+	.c-questions > li {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: clamp(1.125rem, 1rem + 0.7vw, 1.5rem);
+		line-height: 1.3;
+		padding-left: 1.6rem;
+		position: relative;
+	}
+	.c-questions > li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.52em;
+		width: 0.65rem;
+		height: 0.65rem;
+		border-radius: 50%;
+		border: 2px solid var(--color-accent);
+	}
+
+	/* Numbered / tagged pill */
+	.c-tag {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-family: var(--font-display);
+		font-size: var(--text-label);
+		letter-spacing: var(--text-label--letter-spacing);
+		text-transform: uppercase;
+		font-weight: 600;
+		padding: 0.4rem 0.75rem;
+		border-radius: var(--radius-pill);
+		border: var(--border-hair) solid var(--color-line-strong);
+		color: var(--color-ink-muted);
+	}
+	.c-tag--accent {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: var(--color-accent-ink);
+	}
+
+	/* ---------------------------------------------------------------------
+	   FORMS
+	   --------------------------------------------------------------------- */
+	.c-field {
+		display: grid;
+		gap: 0.4rem;
+	}
+	.c-label {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: 0.875rem;
+	}
+	.c-input,
+	.c-textarea,
+	.c-select {
+		width: 100%;
+		background-color: var(--color-creme-50);
+		border: var(--border-hair) solid var(--color-line-strong);
+		border-radius: var(--radius-md);
+		padding: 0.85rem 1rem;
+		font-size: 1rem;
+		transition: border-color var(--dur-fast) var(--ease-out);
+	}
+	.c-input:hover,
+	.c-textarea:hover,
+	.c-select:hover {
+		border-color: var(--color-ink-faint);
+	}
+	.c-textarea {
+		min-height: 9rem;
+		resize: vertical;
+	}
+	.c-help {
+		font-size: var(--text-small);
+		color: var(--color-ink-faint);
+	}
+
+	/* ---------------------------------------------------------------------
+	   SKIP LINK
+	   --------------------------------------------------------------------- */
+	.c-skip {
+		position: absolute;
+		left: 0.75rem;
+		top: -100%;
+		z-index: 100;
+		background: var(--color-accent);
+		color: var(--color-accent-ink);
+		padding: 0.75rem 1.25rem;
+		border-radius: var(--radius-md);
+		font-family: var(--font-display);
+		font-weight: 700;
+	}
+	.c-skip:focus {
+		top: 0.75rem;
+	}
+}
+
+@layer utilities {
+	.u-balance {
+		text-wrap: balance;
+	}
+	.u-accent {
+		color: var(--color-accent);
+	}
+	.u-muted {
+		color: var(--color-ink-muted);
+	}
+	.u-faint {
+		color: var(--color-ink-faint);
+	}
+	.u-font-display {
+		font-family: var(--font-display);
+	}
+	.u-font-body {
+		font-family: var(--font-body);
+	}
+	/* Fade-in on scroll, honoured only when motion is welcome. */
+	.u-reveal {
+		opacity: 0;
+		transform: translateY(14px);
+		transition:
+			opacity var(--dur-slow) var(--ease-out),
+			transform var(--dur-slow) var(--ease-out);
+	}
+	.u-reveal.is-visible {
+		opacity: 1;
+		transform: none;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.u-reveal {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}

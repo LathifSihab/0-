@@ -1,0 +1,59 @@
+/* =========================================================================
+   PAGE — Mocktails (mocktails.html)
+   ========================================================================= */
+
+.mock-intro {
+	display: grid;
+	gap: 1.1rem;
+	max-width: 46rem;
+}
+
+.toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: var(--space-block);
+	padding-bottom: 1.25rem;
+	border-bottom: var(--border-hair) solid var(--color-line-strong);
+}
+.filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+.filters__btn {
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: 0.875rem;
+	padding: 0.55rem 1.05rem;
+	border-radius: var(--radius-pill);
+	border: var(--border-hair) solid var(--color-line-strong);
+	background: transparent;
+	cursor: pointer;
+	transition:
+		background-color var(--dur-fast) var(--ease-out),
+		border-color var(--dur-fast) var(--ease-out);
+}
+.filters__btn:hover {
+	border-color: var(--color-ink);
+}
+.filters__btn.is-active {
+	background: var(--color-accent);
+	border-color: var(--color-accent);
+	color: var(--color-accent-ink);
+}
+
+.grid {
+	display: grid;
+	gap: clamp(1.25rem, 1rem + 1vw, 2rem);
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+}
+
+.cta {
+	display: grid;
+	gap: 1.25rem;
+	justify-items: start;
+	max-width: 44rem;
+}

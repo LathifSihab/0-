@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="nl-BE">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#f5f1e8" />
+
+		<title>Contact · 0% Experiment</title>
+		<meta
+			name="description"
+			content="Een vraag over het 0% Experiment, je bestelling of een samenwerking? Stuur ons een bericht."
+		/>
+		<link rel="canonical" href="https://www.0procentexperiment.be/contact.html" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="0% Experiment" />
+		<meta property="og:title" content="Contact · 0% Experiment" />
+		<meta
+			property="og:description"
+			content="Een vraag over het 0% Experiment, je bestelling of een samenwerking? Stuur ons een bericht."
+		/>
+		<meta property="og:url" content="https://www.0procentexperiment.be/contact.html" />
+		<meta property="og:locale" content="nl_BE" />
+		<meta property="og:image" content="https://www.0procentexperiment.be/brand/icon-512.png" />
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<link rel="icon" href="favicon.png" />
+		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/page-contact.css" />
+
+		<script src="js/config.js" defer></script>
+		<script src="js/shared.js" defer></script>
+		<script src="js/contact.js" defer></script>
+	</head>
+
+	<body>
+		<a href="#hoofdinhoud" class="c-skip">Naar de inhoud</a>
+
+		<div data-site-header></div>
+
+		<main id="hoofdinhoud">
+			<section class="o-section u-surface-creme">
+				<div class="o-container o-container--content">
+					<div class="contact">
+						<div class="contact__copy u-enter">
+							<p class="t-eyebrow">Contact</p>
+							<h1 class="t-h1">Nog een <span class="u-mark">vraag</span>?</h1>
+							<p class="t-lead">
+								Vragen horen bij dit merk. Stel de jouwe gerust — over je bestelling, over het
+								werkboek of over een samenwerking.
+							</p>
+
+							<hr class="u-rule contact__rule" />
+
+							<dl class="contact__details">
+								<dt class="t-eyebrow">E-mail</dt>
+								<dd><a href="#" data-site="email">info@0procentexperiment.be</a></dd>
+
+								<dt class="t-eyebrow">Antwoordtijd</dt>
+								<dd>Meestal binnen twee werkdagen.</dd>
+
+								<dt class="t-eyebrow">Hulp nodig bij stoppen?</dt>
+								<dd class="contact__care">
+									Wij zijn geen hulpverlening. Heb je medische begeleiding nodig, neem dan
+									contact op met je arts of een gespecialiseerde hulpverlener.
+								</dd>
+							</dl>
+						</div>
+
+						<div class="contact__form-wrap">
+							<div class="sent" role="status" data-contact-sent hidden>
+								<p class="t-h3">Bericht verstuurd.</p>
+								<p class="t-small u-muted">
+									Bedankt voor je vraag. We komen erop terug — meestal binnen twee werkdagen.
+								</p>
+							</div>
+
+							<form class="form" data-contact novalidate>
+								<p class="form__notice" data-contact-notice hidden>
+									Dit formulier is nog niet aangesloten op een verzenddienst. Mail ons zolang
+									rechtstreeks via <a href="#" data-site="email">info@0procentexperiment.be</a>.
+								</p>
+
+								<div class="c-field">
+									<label class="c-label" for="naam">Naam</label>
+									<input class="c-input" id="naam" name="naam" required autocomplete="name" />
+								</div>
+
+								<div class="c-field">
+									<label class="c-label" for="email">E-mailadres</label>
+									<input
+										class="c-input"
+										id="email"
+										name="email"
+										type="email"
+										required
+										autocomplete="email"
+									/>
+								</div>
+
+								<div class="c-field">
+									<label class="c-label" for="onderwerp">Onderwerp</label>
+									<select class="c-select" id="onderwerp" name="onderwerp">
+										<option>Vraag over het werkboek</option>
+										<option>Vraag over mijn bestelling</option>
+										<option>Samenwerking of adverteren</option>
+										<option>Iets anders</option>
+									</select>
+								</div>
+
+								<div class="c-field">
+									<label class="c-label" for="bericht">Je bericht</label>
+									<textarea class="c-textarea" id="bericht" name="bericht" required></textarea>
+								</div>
+
+								<!-- Honeypot: bots fill it, humans never see it. -->
+								<div class="honey" aria-hidden="true">
+									<label for="website">Laat dit veld leeg</label>
+									<input id="website" name="website" tabindex="-1" autocomplete="off" />
+								</div>
+
+								<p class="form__error" role="alert" hidden></p>
+
+								<button type="submit" class="c-btn c-btn--primary">Verstuur mijn bericht</button>
+
+								<p class="c-help">
+									We gebruiken je gegevens alleen om je vraag te beantwoorden. Meer daarover in
+									het <a href="privacybeleid.html">privacybeleid</a>.
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<div data-site-footer></div>
+	</body>
+</html>

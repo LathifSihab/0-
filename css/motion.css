@@ -1,0 +1,133 @@
+/* =========================================================================
+   0% EXPERIMENT — MOTION
+   The entrance at the top of every page.
+
+   One idea, repeated: the copy arrives from just below, line by line, and the
+   fluogroen marker draws itself over the word that matters. Curious, not
+   bouncy — the brandbook's motion rules (§ tokens 06) decide the easing and
+   the tempo, this file only decides the order.
+
+   Pure CSS on purpose. The hero is the first thing above the fold, so it must
+   not wait for JavaScript; [data-reveal] keeps doing the scrolling sections.
+
+   Usage: put `u-enter` on the block whose direct children should arrive in
+   sequence. Children 1-6 are staggered, everything after that shares the last
+   beat. A page that wants its own choreography overrides the delays in its
+   own css/page-*.css.
+   ========================================================================= */
+
+@layer utilities {
+	/* ─── THE ENTRANCE ────────────────────────────────────────────────── */
+	.u-enter > * {
+		animation: enter-rise var(--dur-enter) var(--ease-out) both;
+	}
+	.u-enter > *:nth-child(1) {
+		animation-delay: 40ms;
+	}
+	.u-enter > *:nth-child(2) {
+		animation-delay: 130ms;
+	}
+	.u-enter > *:nth-child(3) {
+		animation-delay: 220ms;
+	}
+	.u-enter > *:nth-child(4) {
+		animation-delay: 310ms;
+	}
+	.u-enter > *:nth-child(5) {
+		animation-delay: 400ms;
+	}
+	.u-enter > *:nth-child(6) {
+		animation-delay: 490ms;
+	}
+	.u-enter > *:nth-child(n + 7) {
+		animation-delay: 560ms;
+	}
+
+	/* A group that hands the motion down to its own children instead of
+	   arriving as one block — for short lines that read better one by one. */
+	.u-enter > .u-enter-group {
+		animation: none;
+	}
+	.u-enter-group > * {
+		animation: enter-rise var(--dur-enter) var(--ease-out) both;
+	}
+	.u-enter-group > *:nth-child(1) {
+		animation-delay: 300ms;
+	}
+	.u-enter-group > *:nth-child(2) {
+		animation-delay: 380ms;
+	}
+	.u-enter-group > *:nth-child(3) {
+		animation-delay: 460ms;
+	}
+	.u-enter-group > *:nth-child(n + 4) {
+		animation-delay: 540ms;
+	}
+
+	/* ─── THE MARKER ──────────────────────────────────────────────────────
+	   The highlight over the key word is drawn after the line has landed,
+	   left to right, like someone reaching for a marker pen.
+	   ------------------------------------------------------------------- */
+	.u-enter :is(h1, .t-display, .t-h1) .u-mark {
+		background-repeat: no-repeat;
+		animation: enter-mark 560ms var(--ease-in-out) 620ms both;
+	}
+	.u-enter .u-underline {
+		animation: enter-underline 420ms var(--ease-in-out) 820ms both;
+	}
+
+	/* ─── KEYFRAMES ───────────────────────────────────────────────────── */
+	@keyframes enter-rise {
+		from {
+			opacity: 0;
+			transform: translate3d(0, 1.1rem, 0);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	/* For text inside an overflow-hidden line box: no fade, just the rise. */
+	@keyframes enter-line {
+		from {
+			transform: translate3d(0, 108%, 0);
+		}
+		to {
+			transform: none;
+		}
+	}
+
+	@keyframes enter-mark {
+		from {
+			background-size: 0% 100%;
+		}
+		to {
+			background-size: 100% 100%;
+		}
+	}
+
+	@keyframes enter-underline {
+		from {
+			background-size: 0% 0.22em;
+		}
+		to {
+			background-size: 100% 0.22em;
+		}
+	}
+
+	/* ─── NO MOTION, NO PROBLEM ───────────────────────────────────────────
+	   base.css already flattens every animation to a hair's breadth, but the
+	   end state is what matters here — so say it out loud.
+	   ------------------------------------------------------------------- */
+	@media (prefers-reduced-motion: reduce) {
+		.u-enter > *,
+		.u-enter-group > *,
+		.u-enter :is(h1, .t-display, .t-h1) .u-mark,
+		.u-enter .u-underline {
+			animation: none;
+			opacity: 1;
+			transform: none;
+		}
+	}
+}

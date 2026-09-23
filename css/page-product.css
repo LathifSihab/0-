@@ -1,0 +1,167 @@
+/* =========================================================================
+   PAGE — Het experiment (product.html)
+   The .stack / .body / .pull / .no-list blocks are shared with the
+   confirmation page and live in components.css.
+   ========================================================================= */
+
+.phase-rule {
+	margin-block: var(--space-block);
+	max-width: 46rem;
+}
+
+.finale {
+	margin-top: 0.5rem;
+}
+.finale__sub {
+	color: var(--color-accent);
+}
+
+.days {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 0.5rem;
+	font-family: var(--font-display);
+	font-size: 1.125rem;
+}
+.days span {
+	color: var(--color-accent);
+	font-weight: 700;
+	display: inline-block;
+	min-width: 4.25rem;
+}
+
+.looking {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 0.4rem;
+	font-size: var(--text-lead);
+	color: color-mix(in srgb, var(--color-creme) 88%, transparent);
+}
+.looking li {
+	padding-left: 1.25rem;
+	border-left: 2px solid color-mix(in srgb, var(--color-creme) 20%, transparent);
+}
+.looking li:last-child {
+	border-left-color: var(--color-accent);
+	font-family: var(--font-display);
+	font-weight: 700;
+}
+
+.themes {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0;
+}
+
+.maybe {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 0.55rem;
+	font-size: var(--text-lead);
+	color: var(--color-ink-muted);
+}
+.maybe li {
+	padding-left: 1.5rem;
+	position: relative;
+}
+.maybe li::before {
+	content: '?';
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-family: var(--font-display);
+	font-weight: 800;
+	color: var(--color-accent);
+}
+
+.mocktail-link {
+	font-size: var(--text-small);
+	color: var(--color-ink-faint);
+}
+.mocktail-link a {
+	color: var(--color-ink);
+	text-decoration-color: var(--color-accent);
+	text-decoration-thickness: 2px;
+}
+
+.offer {
+	display: grid;
+	gap: var(--space-block);
+	max-width: none;
+	align-items: start;
+}
+.offer__question {
+	color: var(--color-ink-invert);
+}
+.offer__card {
+	background: var(--color-creme);
+	color: var(--color-antraciet);
+	border-radius: var(--radius-lg);
+	padding: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
+	display: grid;
+	gap: 1.1rem;
+	align-content: start;
+	border: var(--border-strong) solid var(--color-accent);
+}
+.offer__title {
+	margin-top: -0.4rem;
+}
+.offer__features {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 0.5rem;
+	font-size: var(--text-small);
+}
+.offer__features li {
+	padding-left: 1.4rem;
+	position: relative;
+}
+.offer__features li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.55em;
+	width: 0.7rem;
+	height: 2px;
+	background: var(--color-accent);
+}
+.offer__price {
+	border-top: var(--border-hair) solid var(--color-line-strong);
+	padding-top: 1.1rem;
+}
+.offer__footnote {
+	font-size: var(--text-small);
+	color: var(--color-ink-faint);
+	text-align: center;
+}
+
+.ready {
+	display: grid;
+	gap: 1.5rem;
+	justify-items: start;
+}
+.ready__body {
+	font-size: var(--text-lead);
+}
+
+.disclaimer {
+	line-height: 1.7;
+}
+
+@media (min-width: 64rem) {
+	.offer {
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+		gap: 4rem;
+	}
+}

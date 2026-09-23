@@ -1,0 +1,19 @@
+/* =========================================================================
+   0% EXPERIMENT — STYLESHEET ENTRY POINT
+   Link this from every page. Page-specific styles go in their own
+   css/page-*.css file, linked after this one.
+
+   Layer order is declared up front, so it no longer depends on the order the
+   files happen to load in. Later layers win: a utility beats a component,
+   a component beats a base element style. Anything outside a layer (the
+   page-*.css files) beats all three.
+   ========================================================================= */
+
+@layer base, components, utilities;
+
+@import url('./fonts.css');
+@import url('./tokens.css');
+@import url('./base.css');
+@import url('./utilities.css');
+@import url('./components.css');
+@import url('./motion.css');

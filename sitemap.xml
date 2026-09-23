@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Public pages only — the styleguide and the confirmation page stay out.
+	This used to be generated per request; as a static site it is a plain file.
+	Add a <url> here whenever you add a page, and update the domain once it is
+	confirmed in js/config.js.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url><loc>https://www.0procentexperiment.be/</loc></url>
+	<url><loc>https://www.0procentexperiment.be/product.html</loc></url>
+	<url><loc>https://www.0procentexperiment.be/mocktails.html</loc></url>
+	<url><loc>https://www.0procentexperiment.be/contact.html</loc></url>
+	<url><loc>https://www.0procentexperiment.be/algemene-voorwaarden.html</loc></url>
+	<url><loc>https://www.0procentexperiment.be/privacybeleid.html</loc></url>
+	<url><loc>https://www.0procentexperiment.be/cookiebeleid.html</loc></url>
+</urlset>

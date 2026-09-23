@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="nl-BE">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#f5f1e8" />
+
+		<title>Designsysteem · 0% Experiment</title>
+		<meta
+			name="description"
+			content="Het levende designsysteem van 0% Experiment: kleur, typografie, componenten en regels, rechtstreeks uit het brandbook."
+		/>
+		<meta name="robots" content="noindex,nofollow" />
+		<link rel="canonical" href="https://www.0procentexperiment.be/styleguide.html" />
+
+		<link rel="icon" href="favicon.png" />
+		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/page-styleguide.css" />
+
+		<script src="js/config.js" defer></script>
+		<script src="js/shared.js" defer></script>
+	</head>
+
+	<body>
+		<a href="#hoofdinhoud" class="c-skip">Naar de inhoud</a>
+
+		<div data-site-header></div>
+
+		<main id="hoofdinhoud">
+			<div class="sg">
+				<header class="sg__header o-container u-enter">
+					<p class="t-eyebrow">Intern · designsysteem v1.0</p>
+					<h1 class="t-display sg__title">Nieuwsgierig naar <span class="u-mark">jezelf</span>.</h1>
+					<p class="t-lead sg__intro">
+						Dit is het levende designsysteem van 0% Experiment, afgeleid uit het brandbook. Alles
+						wat je hier ziet komt uit dezelfde tokens en stylesheets als de echte site — verander
+						een token in <code>css/tokens.css</code> en deze pagina verandert mee.
+					</p>
+					<nav class="sg__toc" aria-label="Inhoudsopgave">
+						<a href="#kleur">01 Kleur</a>
+						<a href="#typografie">02 Typografie</a>
+						<a href="#ruimte">03 Ruimte &amp; raster</a>
+						<a href="#logo">04 Logo</a>
+						<a href="#grafische-taal">05 Grafische taal</a>
+						<a href="#componenten">06 Componenten</a>
+						<a href="#tone-of-voice">07 Tone of voice</a>
+						<a href="#checklist">08 Checklist</a>
+					</nav>
+				</header>
+
+				<!-- ── 01 KLEUR ──────────────────────────────────────────────── -->
+				<section class="sg__section o-container" id="kleur">
+					<h2 class="t-h2">01 · Kleur</h2>
+					<p class="sg__lead">
+						Crème domineert. Antraciet geeft structuur. Fluogroen werkt als een markeerstift en
+						niet als standaard achtergrond voor volledige pagina's. Petrol ondersteunt en mag niet
+						concurreren met het fluogroen.
+					</p>
+
+					<div class="swatches">
+						<article class="swatch">
+							<div class="swatch__chip" style="background: #f5f1e8"></div>
+							<div class="swatch__meta">
+								<p class="swatch__name">Warm crème</p>
+								<p class="swatch__hex">#F5F1E8</p>
+								<code class="swatch__token">var(--color-creme)</code>
+								<p class="swatch__role t-small u-muted">Primaire achtergrond. Ruim gebruiken.</p>
+							</div>
+						</article>
+						<article class="swatch">
+							<div class="swatch__chip" style="background: #1d1d1d"></div>
+							<div class="swatch__meta">
+								<p class="swatch__name">Antraciet</p>
+								<p class="swatch__hex">#1D1D1D</p>
+								<code class="swatch__token">var(--color-antraciet)</code>
+								<p class="swatch__role t-small u-muted">Primaire tekstkleur en contrast.</p>
+							</div>
+						</article>
+						<article class="swatch">
+							<div class="swatch__chip" style="background: #d7ff00"></div>
+							<div class="swatch__meta">
+								<p class="swatch__name">Fluogroen</p>
+								<p class="swatch__hex">#D7FF00</p>
+								<code class="swatch__token">var(--color-fluo)</code>
+								<p class="swatch__role t-small u-muted">
+									Signature accentkleur. Gericht gebruiken voor herkenning en actie.
+								</p>
+							</div>
+						</article>
+						<article class="swatch">
+							<div class="swatch__chip" style="background: #173c46"></div>
+							<div class="swatch__meta">
+								<p class="swatch__name">Donker petrol</p>
+								<p class="swatch__hex">#173C46</p>
+								<code class="swatch__token">var(--color-petrol)</code>
+								<p class="swatch__role t-small u-muted">
+									Secundaire kleur voor diepte, vlakken en contrast.
+								</p>
+							</div>
+						</article>
+					</div>
+
+					<h3 class="t-h3 sg__sub">Verhouding op een pagina</h3>
+					<p class="sg__lead sg__lead--tight">
+						Richtlijn: ongeveer 70% crème, 20% antraciet of petrol, 10% fluogroen. Gebruik dit als
+						gevoelsmaat, niet als rekenregel.
+					</p>
+					<div class="ratio" aria-hidden="true">
+						<span
+							style="flex: 70; background: var(--color-creme); border: 1px solid var(--color-line-strong)"
+							>crème</span
+						>
+						<span style="flex: 20; background: var(--color-antraciet); color: var(--color-creme)"
+							>ink</span
+						>
+						<span style="flex: 10; background: var(--color-fluo)">fluo</span>
+					</div>
+
+					<h3 class="t-h3 sg__sub">Contrast</h3>
+					<div class="contrast">
+						<div class="contrast__item u-surface-creme">Antraciet op crème · 14,95:1 ✓ AAA</div>
+						<div
+							class="contrast__item"
+							style="background: var(--color-fluo); color: var(--color-antraciet)"
+						>
+							Antraciet op fluogroen · 14,6:1 ✓ AAA
+						</div>
+						<div class="contrast__item u-surface-petrol">Crème op petrol · 10,52:1 ✓ AAA</div>
+						<div class="contrast__item contrast__item--bad">Wit op fluogroen · 1,15:1 ✗ nooit doen</div>
+					</div>
+				</section>
+
+				<!-- ── 02 TYPOGRAFIE ─────────────────────────────────────────── -->
+				<section class="sg__section o-container" id="typografie">
+					<h2 class="t-h2">02 · Typografie</h2>
+					<p class="sg__lead">
+						<strong>Sora</strong> voor titels, statements, buttons en uitgesproken merkmomenten.
+						<strong>Inter</strong> voor langere teksten, formulieren, FAQ's en checkoutinformatie.
+						Hoofdletters alleen voor korte labels, nooit voor lange teksten.
+					</p>
+
+					<div class="scale">
+						<div class="scale__row">
+							<div class="scale__meta">
+								<code>.t-display</code>
+								<p class="t-small u-faint">Hero-statements. Eén per pagina.</p>
+							</div>
+							<p class="t-display">Nieuwsgierig naar jezelf.</p>
+						</div>
+						<div class="scale__row">
+							<div class="scale__meta">
+								<code>.t-h1</code>
+								<p class="t-small u-faint">Paginatitel.</p>
+							</div>
+							<p class="t-h1">Nieuwsgierig naar jezelf.</p>
+						</div>
+						<div class="scale__row">
+							<div class="scale__meta">
+								<code>.t-h2</code>
+								<p class="t-small u-faint">Sectietitel.</p>
+							</div>
+							<p class="t-h2">Nieuwsgierig naar jezelf.</p>
+						</div>
+						<div class="scale__row">
+							<div class="scale__meta">
+								<code>.t-h3</code>
+								<p class="t-small u-faint">Blok- en kaarttitel.</p>
+							</div>
+							<p class="t-h3">Nieuwsgierig naar jezelf.</p>
+						</div>
+						<div class="scale__row">
+							<div class="scale__meta">
+								<code>.t-lead</code>
+								<p class="t-small u-faint">Introtekst onder een titel.</p>
+							</div>
+							<p class="t-lead">
+								30 dagen lang halen we alcohol uit de vergelijking. En dan gaan we kijken.
+							</p>
+						</div>
+						<div class="scale__row">
+							<div class="scale__meta">
+								<code>body</code>
+								<p class="t-small u-faint">Standaard leestekst, Inter.</p>
+							</div>
+							<p>
+								Dit werkboek gaat over wat je in die 30 dagen kunt opmerken als je eindelijk
+								begint te kijken. Naar je automatische gewoontes. Naar je lichaam. Naar je
+								gedachten.
+							</p>
+						</div>
+						<div class="scale__row">
+							<div class="scale__meta">
+								<code>.t-eyebrow</code>
+								<p class="t-small u-faint">Kort label in hoofdletters.</p>
+							</div>
+							<p class="t-eyebrow">30 dagen · één variabele · jij</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- ── 03 RUIMTE ─────────────────────────────────────────────── -->
+				<section class="sg__section o-container" id="ruimte">
+					<h2 class="t-h2">03 · Ruimte &amp; raster</h2>
+					<p class="sg__lead">
+						"Veel ademruimte en sterk contrast." Secties ademen; leestekst blijft smal genoeg om
+						comfortabel te lezen.
+					</p>
+					<dl class="tokens">
+						<div>
+							<dt><code>--space-section</code></dt>
+							<dd>Verticale sectiepadding · 4,5rem → 9rem</dd>
+						</div>
+						<div>
+							<dt><code>--space-block</code></dt>
+							<dd>Tussen blokken · 2rem → 3,5rem</dd>
+						</div>
+						<div>
+							<dt><code>--space-gutter</code></dt>
+							<dd>Zijmarge pagina · 1,25rem → 2,5rem</dd>
+						</div>
+						<div>
+							<dt><code>--container-reading</code></dt>
+							<dd>42rem · lange tekst nooit breder</dd>
+						</div>
+						<div>
+							<dt><code>--container-content</code></dt>
+							<dd>64rem · standaard inhoud</dd>
+						</div>
+						<div>
+							<dt><code>--container-wide</code></dt>
+							<dd>80rem · volledige lay-out</dd>
+						</div>
+					</dl>
+				</section>
+
+				<!-- ── 04 LOGO ───────────────────────────────────────────────── -->
+				<section class="sg__section o-container" id="logo">
+					<h2 class="t-h2">04 · Logo</h2>
+					<p class="sg__lead">
+						Het vergrootglas dat uit de 0 ontstaat is het centrale merkelement. Gebruik het
+						volledige logo op belangrijke merkmomenten; de 0% met vergrootglas mag zelfstandig als
+						icoon.
+					</p>
+					<div class="logos">
+						<div class="logos__item">
+							<img
+								src="brand/logo-lockup.png"
+								width="133"
+								height="120"
+								style="height: 120px; width: auto"
+								alt="0% Experiment — volledige lockup"
+								loading="lazy"
+								decoding="async"
+							/>
+							<p class="t-small u-faint">Lockup · <code>brand/logo-lockup.png</code></p>
+						</div>
+						<div class="logos__item logos__item--dark">
+							<img
+								src="brand/logo-mark.png"
+								width="141"
+								height="120"
+								style="height: 120px; width: auto"
+								alt="0% Experiment — beeldmerk"
+								loading="lazy"
+								decoding="async"
+							/>
+							<p class="t-small">Mark · <code>brand/logo-mark.png</code></p>
+						</div>
+					</div>
+					<div class="donts">
+						<p class="donts__title">Niet doen</p>
+						<ul>
+							<li>Uitrekken of roteren.</li>
+							<li>Willekeurig herkleuren.</li>
+							<li>Van schaduwen voorzien.</li>
+							<li>Op drukke fotografie plaatsen.</li>
+							<li>Te weinig vrije ruimte laten.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ── 05 GRAFISCHE TAAL ─────────────────────────────────────── -->
+				<section class="sg__section o-container" id="grafische-taal">
+					<h2 class="t-h2">05 · Grafische taal</h2>
+					<p class="sg__lead">
+						Cirkels, uitsneden, onderlijningen, gemarkeerde woorden en uitvergrote details — het
+						vergrootglas groeit door tot een terugkerende visuele taal.
+					</p>
+
+					<div class="devices">
+						<div class="device">
+							<p class="device__demo">Een <span class="u-mark">gemarkeerd</span> woord.</p>
+							<code>.u-mark</code>
+						</div>
+						<div class="device">
+							<p class="device__demo">Een <span class="u-mark--soft">langere passage</span> markeren.</p>
+							<code>.u-mark--soft</code>
+						</div>
+						<div class="device">
+							<p class="device__demo">Een <span class="u-underline">onderlijnd</span> woord.</p>
+							<code>.u-underline</code>
+						</div>
+						<div class="device">
+							<p class="device__demo">Een <span class="u-circled">omcirkeld</span> woord.</p>
+							<code>.u-circled</code>
+						</div>
+						<div class="device">
+							<p class="u-figure">30</p>
+							<code>.u-figure</code>
+						</div>
+						<div class="device">
+							<hr class="u-rule" />
+							<code>.u-rule</code>
+						</div>
+					</div>
+
+					<div class="rules">
+						<div class="rules__col rules__col--wel">
+							<p class="rules__title">Wel</p>
+							<ul>
+								<li>Veel ademruimte en sterk contrast.</li>
+								<li>Fluogroen als bewuste visuele onderbreking.</li>
+								<li>Editorial combineren met speelse imperfectie.</li>
+								<li>Het 0%-symbool laten terugkomen als herkenningspunt.</li>
+							</ul>
+						</div>
+						<div class="rules__col rules__col--niet">
+							<p class="rules__title">Niet</p>
+							<ul>
+								<li>Elke sectie fluogroen maken.</li>
+								<li>Cliché alcoholbeelden als standaard gebruiken.</li>
+								<li>Medische of therapeutische uitstraling.</li>
+								<li>Zachte pastel-wellnessesthetiek.</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- ── 06 COMPONENTEN ────────────────────────────────────────── -->
+				<section class="sg__section o-container" id="componenten">
+					<h2 class="t-h2">06 · Componenten</h2>
+
+					<h3 class="t-h3 sg__sub">Buttons</h3>
+					<p class="sg__lead sg__lead--tight">
+						Primair is altijd fluogroen met antraciete tekst. Eén primaire actie per scherm.
+					</p>
+					<div class="row">
+						<button type="button" class="c-btn c-btn--primary">Start het experiment</button>
+						<button type="button" class="c-btn c-btn--secondary">Meer lezen</button>
+						<button type="button" class="c-btn c-btn--ghost">Eerst even kijken</button>
+						<button type="button" class="c-btn c-btn--primary c-btn--lg">Groot formaat</button>
+						<button type="button" class="c-btn c-btn--primary" disabled>Uitgeschakeld</button>
+					</div>
+					<div class="row row--dark u-surface-petrol">
+						<button type="button" class="c-btn c-btn--primary">Op petrol</button>
+						<button type="button" class="c-btn c-btn--secondary">Secundair op petrol</button>
+					</div>
+
+					<h3 class="t-h3 sg__sub">Kaarten en tags</h3>
+					<div class="row row--grid">
+						<div class="c-card">
+							<p class="t-eyebrow">Kaart</p>
+							<p class="t-h3">Een blok inhoud</p>
+							<p class="t-small u-muted">
+								Subtiele rand, lichte crème, kleine radius. Editorial, niet bubbelig.
+							</p>
+						</div>
+						<div class="c-card c-card--interactive">
+							<p class="t-eyebrow">Interactieve kaart</p>
+							<p class="t-h3">Beweeg hierover</p>
+							<p class="t-small u-muted">Licht omhoog, zachte schaduw.</p>
+						</div>
+						<div class="c-card tagcard">
+							<p class="t-eyebrow">Tags</p>
+							<div class="tagcard__row">
+								<span class="c-tag">slaap</span>
+								<span class="c-tag">dopamine</span>
+								<span class="c-tag c-tag--accent">0% alcohol</span>
+							</div>
+						</div>
+					</div>
+
+					<h3 class="t-h3 sg__sub">Vragenlijst</h3>
+					<p class="sg__lead sg__lead--tight">
+						Het kernpatroon van dit merk: één vraag per regel, ruimte ertussen.
+					</p>
+					<ul class="c-questions">
+						<li>Wat gebeurt er met je slaap?</li>
+						<li>Je energie?</li>
+						<li>Je vrijdagavond?</li>
+					</ul>
+
+					<h3 class="t-h3 sg__sub">Formuliervelden</h3>
+					<div class="formdemo">
+						<div class="c-field">
+							<label class="c-label" for="sg-naam">Naam</label>
+							<input class="c-input" id="sg-naam" placeholder="Jouw naam" />
+						</div>
+						<div class="c-field">
+							<label class="c-label" for="sg-select">Onderwerp</label>
+							<select class="c-select" id="sg-select">
+								<option>Vraag over het werkboek</option>
+								<option>Iets anders</option>
+							</select>
+						</div>
+						<div class="c-field formdemo__wide">
+							<label class="c-label" for="sg-tekst">Bericht</label>
+							<textarea class="c-textarea" id="sg-tekst" placeholder="Stel je vraag"></textarea>
+							<p class="c-help">Helptekst staat in Inter en is bewust rustig.</p>
+						</div>
+					</div>
+
+					<h3 class="t-h3 sg__sub">Accordion</h3>
+					<div class="acc">
+						<div class="acc__item">
+							<h4 class="acc__heading">
+								<button class="acc__trigger" type="button" aria-controls="acc-panel-sg-0">
+									<span>Een vraag in een accordion</span>
+									<span class="acc__icon" aria-hidden="true"></span>
+								</button>
+							</h4>
+							<div class="acc__panel" id="acc-panel-sg-0">
+								<p>Het antwoord staat in Inter, want dit is functionele leestekst.</p>
+							</div>
+						</div>
+						<div class="acc__item">
+							<h4 class="acc__heading">
+								<button class="acc__trigger" type="button" aria-controls="acc-panel-sg-1">
+									<span>Nog een vraag</span>
+									<span class="acc__icon" aria-hidden="true"></span>
+								</button>
+							</h4>
+							<div class="acc__panel" id="acc-panel-sg-1">
+								<p>De cirkel met het plusteken is de knipoog naar het vergrootglas.</p>
+							</div>
+						</div>
+					</div>
+
+					<h3 class="t-h3 sg__sub">Advertentieblok</h3>
+					<p class="sg__lead sg__lead--tight">
+						Gebruikt op de mocktailpagina. Altijd duidelijk gelabeld — dit merk doet niet stiekem.
+					</p>
+					<div class="adwrap">
+						<aside class="ad ad--empty">
+							<p class="ad__label t-eyebrow">In samenwerking met</p>
+							<div class="ad__content ad__content--empty">
+								<p class="ad__brand t-h3">Advertentieruimte</p>
+								<p class="ad__claim t-small">
+									Vrij blok voor een alcoholvrij merk. Geef <code>brand</code>, <code>claim</code>,
+									<code>href</code> en <code>image</code> mee aan <code>adHtml()</code> in
+									<code>js/mocktails.js</code>.
+								</p>
+							</div>
+						</aside>
+					</div>
+				</section>
+
+				<!-- ── 07 TONE OF VOICE ──────────────────────────────────────── -->
+				<section class="sg__section o-container" id="tone-of-voice">
+					<h2 class="t-h2">07 · Tone of voice</h2>
+					<p class="sg__lead">
+						0% Experiment spreekt als een uitnodiging, niet als een instructie. Korte zinnen.
+						Sterke vragen. Heldere dagelijkse taal. Direct en geestig mag, belerend niet.
+					</p>
+					<div class="voice">
+						<div class="voice__col voice__col--ja">
+							<p class="rules__title">Zo klinkt het</p>
+							<ul>
+								<li>"Wat gebeurt er als je 30 dagen niet drinkt?"</li>
+								<li>"Geen belofte. Wel een experiment."</li>
+								<li>"30 dagen. Eén vraag: wat merk jij?"</li>
+								<li>"Nieuwsgierig naar jezelf?"</li>
+							</ul>
+						</div>
+						<div class="voice__col voice__col--nee">
+							<p class="rules__title">Zo niet</p>
+							<ul>
+								<li>Moraliserende taal en angstcommunicatie.</li>
+								<li>Overdreven gezondheidsclaims.</li>
+								<li>Schaamte en schuld.</li>
+								<li>Klinken als een detoxprogramma of een les over gezond leven.</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- ── 08 CHECKLIST ──────────────────────────────────────────── -->
+				<section class="sg__section o-container" id="checklist">
+					<h2 class="t-h2">08 · Checklist voor designers</h2>
+					<p class="sg__lead">Loop dit na bij elk ontwerp voor je het oplevert.</p>
+					<ol class="checklist">
+						<li>Maakt dit nieuwsgierig?</li>
+						<li>Blijft crème de visuele basis?</li>
+						<li>Wordt fluogroen bewust en gedoseerd gebruikt?</li>
+						<li>Voelt de typografie hedendaags en editoriaal?</li>
+						<li>Komt het idee van onderzoeken of uitvergroten terug?</li>
+						<li>Vermijden we medische, belerende en generieke wellnesscodes?</li>
+						<li>Is de primaire actie onmiddellijk duidelijk?</li>
+						<li>Behoudt mobiel dezelfde merkenergie?</li>
+						<li>Voelt het ene digitale product waardevol en tastbaar?</li>
+						<li>Is dit nog herkenbaar als 0% Experiment wanneer het logo even niet zichtbaar is?</li>
+					</ol>
+
+					<div class="sign">
+						<p class="t-display sign__mark">0%</p>
+						<p class="sign__tagline"><span class="u-accent">Nieuwsgierig</span> naar jezelf.</p>
+						<p class="t-small u-faint">Merkkleuren: #F5F1E8 · #1D1D1D · #D7FF00 · #173C46</p>
+					</div>
+				</section>
+			</div>
+		</main>
+
+		<div data-site-footer></div>
+	</body>
+</html>

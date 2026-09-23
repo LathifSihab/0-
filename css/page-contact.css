@@ -1,0 +1,122 @@
+/* =========================================================================
+   PAGE — Contact (contact.html)
+   ========================================================================= */
+
+.contact {
+	display: grid;
+	gap: var(--space-block);
+	align-items: start;
+}
+.contact__copy {
+	display: grid;
+	gap: 1.1rem;
+	align-content: start;
+}
+.contact__rule {
+	margin-block: 1rem;
+}
+.contact__details {
+	display: grid;
+	gap: 0.3rem;
+	margin: 0;
+}
+.contact__details dt {
+	margin-top: 1rem;
+}
+.contact__details dd {
+	margin: 0;
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: 1.0625rem;
+}
+.contact__details a {
+	text-decoration-color: var(--color-accent);
+	text-decoration-thickness: 2px;
+}
+.contact__care {
+	font-family: var(--font-body) !important;
+	font-weight: 400 !important;
+	font-size: var(--text-small) !important;
+	color: var(--color-ink-muted);
+	max-width: 26rem;
+	line-height: 1.6;
+}
+
+.form {
+	display: grid;
+	gap: 1.1rem;
+	justify-items: stretch;
+	background: var(--color-surface-raised);
+	border: var(--border-hair) solid var(--color-line-strong);
+	border-radius: var(--radius-lg);
+	padding: clamp(1.35rem, 1rem + 1.6vw, 2.25rem);
+}
+.form[hidden] {
+	display: none;
+}
+.form .c-btn {
+	justify-self: start;
+}
+.form__error {
+	font-size: var(--text-small);
+	color: var(--color-critical);
+	border-left: 2px solid var(--color-critical);
+	padding-left: 0.75rem;
+}
+.form__error[hidden],
+.form__notice[hidden] {
+	display: none;
+}
+.form__notice {
+	font-size: var(--text-small);
+	border-left: var(--border-strong) solid var(--color-accent);
+	background: var(--color-fluo-soft);
+	padding: 0.85rem 1rem;
+	border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.form__notice a {
+	text-decoration-color: var(--color-accent);
+	text-decoration-thickness: 2px;
+}
+.honey {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+}
+
+.sent {
+	display: grid;
+	gap: 0.6rem;
+	background: var(--color-surface-raised);
+	border: var(--border-strong) solid var(--color-accent);
+	border-radius: var(--radius-lg);
+	padding: 2rem;
+}
+.sent[hidden] {
+	display: none;
+}
+
+@media (min-width: 60rem) {
+	.contact {
+		grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+		gap: 4rem;
+	}
+}
+
+/* ─── ENTRANCE ────────────────────────────────────────────────────────────
+   The copy arrives through the shared .u-enter stagger (css/motion.css); the
+   form panel follows one beat behind it, as a single block.
+   ----------------------------------------------------------------------- */
+.contact__form-wrap {
+	animation: enter-rise var(--dur-enter) var(--ease-out) 420ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.contact__form-wrap {
+		animation: none;
+		opacity: 1;
+		transform: none;
+	}
+}

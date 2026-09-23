@@ -1,0 +1,91 @@
+/* =========================================================================
+   PAGE — Bestelbevestiging (bevestiging.html)
+   The .stack / .body / .pull / .no-list blocks are shared with the product
+   page and live in components.css.
+   ========================================================================= */
+
+.download {
+	display: grid;
+	gap: 0.9rem;
+	justify-items: start;
+	padding: 1.75rem;
+	border: var(--border-strong) solid var(--color-accent);
+	border-radius: var(--radius-lg);
+}
+.download__note {
+	font-size: var(--text-small);
+	color: color-mix(in srgb, var(--color-creme) 72%, transparent);
+}
+.download__pending {
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: 1.25rem;
+	color: var(--color-ink-invert);
+}
+
+.invoice a {
+	color: var(--color-accent);
+}
+
+.order-ref {
+	font-size: var(--text-small);
+	color: color-mix(in srgb, var(--color-creme) 62%, transparent);
+}
+.order-ref[hidden] {
+	display: none;
+}
+.order-ref code {
+	font-family: ui-monospace, monospace;
+	color: var(--color-accent);
+	word-break: break-all;
+}
+
+.steps {
+	list-style: none;
+	counter-reset: s;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 0.75rem;
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: 1.25rem;
+}
+.steps li {
+	counter-increment: s;
+	position: relative;
+	padding-left: 2.6rem;
+}
+.steps li::before {
+	content: counter(s);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1.9rem;
+	height: 1.9rem;
+	display: grid;
+	place-items: center;
+	border-radius: 50%;
+	background: var(--color-accent);
+	color: var(--color-accent-ink);
+	font-size: 0.9rem;
+}
+
+.outro {
+	display: grid;
+	gap: 0.75rem;
+	justify-items: start;
+}
+
+.help a {
+	text-decoration-color: var(--color-accent);
+	text-decoration-thickness: 2px;
+}
+
+/* ─── ENTRANCE ────────────────────────────────────────────────────────────
+   The three "geen ..." lines land one by one (.u-enter-group), so the closing
+   statement has to wait for them instead of arriving halfway through.
+   ----------------------------------------------------------------------- */
+.stack.u-enter > .pull {
+	animation-delay: 580ms;
+}
