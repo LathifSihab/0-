@@ -1,7 +1,7 @@
 /* =========================================================================
    0% EXPERIMENT — STYLESHEET ENTRY POINT
    Link this from every page. Page-specific styles go in their own
-   css/page-*.css file, linked after this one.
+   assets/css/page-*.css file, linked after this one.
 
    Layer order is declared up front, so it no longer depends on the order the
    files happen to load in. Later layers win: a utility beats a component,

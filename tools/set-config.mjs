@@ -1,5 +1,5 @@
 /**
- * set-config.mjs — write one value into js/config.js, in place.
+ * set-config.mjs — write one value into assets/js/config.js, in place.
  *
  * The launch values live in a commented JavaScript file rather than a .env,
  * so the go-live wizard needs something that can edit that file precisely and
@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const CONFIG = resolve(HERE, '..', 'js', 'config.js');
+const CONFIG = resolve(HERE, '..', 'assets', 'js', 'config.js');
 
 const [dotted, value, ...flags] = process.argv.slice(2);
 const raw = flags.includes('--raw');
@@ -56,7 +56,7 @@ function findBlock(text, name) {
 
 const found = findBlock(source, block);
 if (!found) {
-	console.error(`could not find window.${block} = { … } in js/config.js`);
+	console.error(`could not find window.${block} = { … } in assets/js/config.js`);
 	process.exit(1);
 }
 

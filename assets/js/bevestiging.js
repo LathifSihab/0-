@@ -9,7 +9,7 @@
  * that — the check would have to run in the browser, where anyone can skip
  * it, and it would need a Stripe secret key that anyone could read.
  *
- * So this page cannot gate anything. It reports what DELIVERY in js/config.js
+ * So this page cannot gate anything. It reports what DELIVERY in assets/js/config.js
  * says was arranged, and shows the Stripe session id as an order reference so
  * a buyer has something concrete to quote in a mail. Read the DELIVERY block
  * before launch: Stripe does not deliver files by itself.

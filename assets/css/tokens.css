@@ -142,5 +142,5 @@
 	--dur-fast: 140ms;
 	--dur-base: 240ms;
 	--dur-slow: 520ms;
-	--dur-enter: 700ms; /* page-entrance choreography — see css/motion.css */
+	--dur-enter: 700ms; /* page-entrance choreography — see assets/css/motion.css */
 }

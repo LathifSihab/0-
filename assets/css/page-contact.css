@@ -106,7 +106,7 @@
 }
 
 /* ─── ENTRANCE ────────────────────────────────────────────────────────────
-   The copy arrives through the shared .u-enter stagger (css/motion.css); the
+   The copy arrives through the shared .u-enter stagger (assets/css/motion.css); the
    form panel follows one beat behind it, as a single block.
    ----------------------------------------------------------------------- */
 .contact__form-wrap {

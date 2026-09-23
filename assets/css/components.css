@@ -426,7 +426,7 @@
 }
 
 /* The demo panel stands in for the checkout while no Payment Link is set
-   (js/config.js → DEMO). It is built out of currentColor, because the same
+   (assets/js/config.js → DEMO). It is built out of currentColor, because the same
    panel has to stay legible on crème, on the offer card and on petrol. */
 .buy__demo {
 	display: grid;

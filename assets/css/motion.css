@@ -13,7 +13,7 @@
    Usage: put `u-enter` on the block whose direct children should arrive in
    sequence. Children 1-6 are staggered, everything after that shares the last
    beat. A page that wants its own choreography overrides the delays in its
-   own css/page-*.css.
+   own assets/css/page-*.css.
    ========================================================================= */
 
 @layer utilities {

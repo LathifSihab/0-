@@ -1,0 +1,25 @@
+/* =========================================================================
+   PAGE — Niet gevonden (404.html)
+   Netlify serves this for any unknown path, and for /tools/* via _redirects.
+   ========================================================================= */
+
+.gone {
+	max-width: 42rem;
+	display: grid;
+	gap: 1.25rem;
+	align-content: start;
+	padding-block: clamp(1rem, 0.5rem + 3vw, 4rem);
+}
+.gone__body {
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: var(--text-lead);
+	color: var(--color-ink-muted);
+}
+.gone__cta {
+	margin-top: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1.25rem;
+}

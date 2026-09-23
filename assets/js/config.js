@@ -9,7 +9,7 @@ window.SITE = {
 	name: '0% Experiment',
 	tagline: 'Nieuwsgierig naar jezelf.',
 	/** TODO: confirm the production domain before launch. */
-	url: 'https://www.0procentexperiment.be',
+	url: 'https://0-project.netlify.app',
 	locale: 'nl-BE',
 	/** TODO: mailbox still has to be created — see content document §5. */
 	email: 'info@0procentexperiment.be',
@@ -47,7 +47,7 @@ window.SITE = {
  * Then, under **After the payment** → **Confirmation page**, choose
  * "Redirect customers to your website" and paste:
  *
- *   https://www.0procentexperiment.be/bevestiging.html?session_id={CHECKOUT_SESSION_ID}
+ *   https://<your-domain>/bevestiging.html?session_id={CHECKOUT_SESSION_ID}
  *
  * Stripe swaps {CHECKOUT_SESSION_ID} for the real id, and bevestiging.html
  * shows it as the order reference. See DELIVERY below for the one thing
@@ -75,7 +75,7 @@ window.PRODUCT = {
  *
  * With no `paymentLink` set, the buy buttons have nothing to point at. The
  * default behaviour is a blunt red warning aimed at whoever is building the
- * site ("zet paymentLink in js/config.js") — useful while working, wrong when
+ * site ("zet paymentLink in assets/js/config.js") — useful while working, wrong when
  * you are showing the site to someone.
  *
  * With `enabled: true` the buttons get a demo panel instead: a marked

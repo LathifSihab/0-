@@ -8,9 +8,9 @@ people's dashboards. What *can* be tested is everything on this side of the
 wire — that a filled-in config reaches the buttons, that the forms send what
 a provider expects, and that an unconfigured site says so instead of lying.
 
-This serves the site on a local port, swaps js/config.js for a filled-in
+This serves the site on a local port, swaps assets/js/config.js for a filled-in
 version per check, points the forms at a mock endpoint, and drives it all in
-a headless browser. Nothing here touches your real js/config.js.
+a headless browser. Nothing here touches your real assets/js/config.js.
 
     pip install playwright && playwright install chromium
     python tools/check-integration.py
@@ -31,7 +31,7 @@ except ImportError:
              "  pip install playwright && playwright install chromium")
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-CONFIG = ROOT / 'js' / 'config.js'
+CONFIG = ROOT / 'assets' / 'js' / 'config.js'
 PORT = 8799
 
 received = []
@@ -75,7 +75,7 @@ def check(name, ok, detail=''):
 
 
 def configured(page, extra):
-    """Serve js/config.js with `extra` appended, as if those values were set."""
+    """Serve assets/js/config.js with `extra` appended, as if those values were set."""
     source = CONFIG.read_text(encoding='utf-8')
     page.route('**/js/config.js', lambda route: route.fulfill(
         status=200,

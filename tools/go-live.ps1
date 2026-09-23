@@ -47,7 +47,7 @@ if (-not $bash) {
     exit 1
 }
 
-# Run it from the site root so its relative paths (js/config.js, tools/…) line
+# Run it from the site root so its relative paths (assets/js/config.js, tools/…) line
 # up, exactly as they would in a Git Bash session opened there.
 Push-Location (Split-Path $PSScriptRoot -Parent)
 try {

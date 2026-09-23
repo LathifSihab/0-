@@ -1,0 +1,4 @@
+# tools/ is local scaffolding — the go-live wizard and the integration checker.
+# It gets uploaded with the rest of the folder, so serve a 404 instead of the
+# source. Nothing secret lives there; it simply is not part of the site.
+/tools/*  /404.html  404

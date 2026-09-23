@@ -182,7 +182,7 @@ finish() {
 # ──────────────────────────────────────────────────────────────────────────
 # STAGES: going live with 0% Experiment.
 #
-# Every stage ends in a value that lands in js/config.js. Nothing here needs a
+# Every stage ends in a value that lands in assets/js/config.js. Nothing here needs a
 # server: the site stays static, and Stripe, the form service and the mailing
 # list provider each host their own half.
 #
@@ -194,12 +194,12 @@ finish() {
 cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit 1
 
 # Answers are kept here so a second run can offer them back as defaults. The
-# real destination is js/config.js; this file is only a memo to itself.
+# real destination is assets/js/config.js; this file is only a memo to itself.
 ENV_FILE="tools/launch-answers.env"
 
 TOTAL_STAGES=6
 
-# set_config BLOCK.key VALUE [--raw] writes one value into js/config.js.
+# set_config BLOCK.key VALUE [--raw] writes one value into assets/js/config.js.
 set_config() {
   if [[ "${3:-}" == "--raw" ]]; then
     node tools/set-config.mjs "$1" "$2" --raw
@@ -209,7 +209,7 @@ set_config() {
 }
 
 # ask_until KEY "Prompt" REGEX "complaint" keeps asking until the answer looks
-# right. Everything captured here is written into js/config.js, so a typo or a
+# right. Everything captured here is written into assets/js/config.js, so a typo or a
 # stray Enter would otherwise end up on the live site quietly.
 ask_until() {
   local key="$1" prompt="$2" pattern="$3" complaint="$4" value attempts=0
@@ -425,7 +425,7 @@ printf '\n'
 if confirm "Turn demo mode off?"; then
   set_config DEMO.enabled false --raw
 else
-  note "Left on. Flip DEMO.enabled in js/config.js when you are ready."
+  note "Left on. Flip DEMO.enabled in assets/js/config.js when you are ready."
 fi
 printf '\n'
 
@@ -441,7 +441,7 @@ warn "money — and paste the live URL over PRODUCT.paymentLink."
 printf '\n'
 
 SKIPPED+=("Swap in the LIVE Stripe payment link before announcing anything")
-SKIPPED+=("SITE.company name/address/VAT in js/config.js — the legal pages show them")
+SKIPPED+=("SITE.company name/address/VAT in assets/js/config.js — the legal pages show them")
 SKIPPED+=("Have a lawyer read the three legal pages; they are drafts and say so")
 SKIPPED+=("Update the canonical + og:url tags, sitemap.xml and robots.txt for your domain")
 

@@ -76,7 +76,7 @@
 			'<header class="header">' +
 			'<div class="o-container header__inner">' +
 			'<a href="index.html" class="header__logo" aria-label="0% Experiment — naar de homepage">' +
-			'<img src="brand/logo-mark.png" width="45" height="38" style="height: 38px; width: auto;" alt="0% Experiment — nieuwsgierig naar jezelf" decoding="async" />' +
+			'<img src="assets/img/brand/logo-mark.png" width="45" height="38" style="height: 38px; width: auto;" alt="0% Experiment — nieuwsgierig naar jezelf" decoding="async" />' +
 			'<span class="header__wordmark" aria-hidden="true">0% Experiment' +
 			'<span class="header__payoff">Nieuwsgierig naar jezelf.</span>' +
 			'</span>' +
@@ -124,7 +124,7 @@
 			'<footer class="footer u-surface-ink">' +
 			'<div class="o-container footer__inner">' +
 			'<div class="footer__brand">' +
-			'<img src="brand/logo-mark.png" width="85" height="72" style="height: 72px; width: auto;" alt="0% Experiment — nieuwsgierig naar jezelf" loading="lazy" decoding="async" />' +
+			'<img src="assets/img/brand/logo-mark.png" width="85" height="72" style="height: 72px; width: auto;" alt="0% Experiment — nieuwsgierig naar jezelf" loading="lazy" decoding="async" />' +
 			'<p class="footer__wordmark u-font-display">0% Experiment</p>' +
 			'<p class="footer__tagline"><span class="u-accent">Nieuwsgierig</span> naar jezelf.</p>' +
 			'</div>' +
@@ -330,8 +330,8 @@
 			}
 
 			var reason = !link
-				? 'De verkoop staat nog niet open. Zet paymentLink in js/config.js zodra je Stripe Payment Link klaar is.'
-				: 'De prijs staat nog niet vast. Zet priceCents + priceConfirmed in js/config.js.';
+				? 'De verkoop staat nog niet open. Zet paymentLink in assets/js/config.js zodra je Stripe Payment Link klaar is.'
+				: 'De prijs staat nog niet vast. Zet priceCents + priceConfirmed in assets/js/config.js.';
 
 			if (isDemo()) {
 				if (window.DEMO.target) {
@@ -402,7 +402,7 @@
 			} else {
 				tag.innerHTML =
 					'Prijs nog te bepalen' +
-					'<span class="price__note">Zet <code>priceCents</code> + <code>priceConfirmed</code> in <code>js/config.js</code></span>';
+					'<span class="price__note">Zet <code>priceCents</code> + <code>priceConfirmed</code> in <code>assets/js/config.js</code></span>';
 			}
 		});
 	}
@@ -448,7 +448,7 @@
 
 	/* ─── NEWSLETTER ─────────────────────────────────────────
 	   Sends the address to whatever list provider is configured in
-	   ENDPOINTS.newsletter + NEWSLETTER (js/config.js). Two shapes, because
+	   ENDPOINTS.newsletter + NEWSLETTER (assets/js/config.js). Two shapes, because
 	   providers come in two shapes — see the NEWSLETTER block in the config.
 	   ------------------------------------------------------------------- */
 	function initNewsletter() {
@@ -476,7 +476,7 @@
 
 			if (!window.ENDPOINTS.newsletter) {
 				showError(
-					'De nieuwsbrief is nog niet aangesloten. Zet ENDPOINTS.newsletter in js/config.js.'
+					'De nieuwsbrief is nog niet aangesloten. Zet ENDPOINTS.newsletter in assets/js/config.js.'
 				);
 				return;
 			}
@@ -551,7 +551,7 @@
 	}
 
 	/* ─── FORM PLUMBING ────────────────────────────────────────
-	   Shared by the newsletter here and the contact form in js/contact.js.
+	   Shared by the newsletter here and the contact form in assets/js/contact.js.
 	   ------------------------------------------------------------------- */
 
 	/** The provider's own field names, plus whatever its embed carries along. */
@@ -637,7 +637,7 @@
 			});
 	}
 
-	// js/contact.js runs as its own script, so hand it what it needs.
+	// assets/js/contact.js runs as its own script, so hand it what it needs.
 	window.FORMS = {
 		buildFields: buildFields,
 		encodeFields: encodeFields,

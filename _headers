@@ -1,0 +1,15 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Netlify response headers.
+#
+# ⚠️ LAUNCH SWITCH — delete the X-Robots-Tag block below when the real domain
+# goes live. While the site lives on a *.netlify.app preview URL it must stay
+# out of Google: the pages name the production domain as their canonical, and
+# an indexed preview would compete with the real site later.
+#
+# Everything else here is safe to keep.
+# ─────────────────────────────────────────────────────────────────────────────
+
+/*
+  X-Robots-Tag: noindex, nofollow
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

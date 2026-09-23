@@ -4,4 +4,4 @@ Disallow: /styleguide.html
 Disallow: /bevestiging.html
 
 # TODO: zet het productiedomein hier zodra het vastligt.
-Sitemap: https://www.0procentexperiment.be/sitemap.xml
+Sitemap: https://0-project.netlify.app/sitemap.xml

@@ -23,9 +23,18 @@ form POST, which needs a real origin.
 
 ## Deploying it
 
-Upload this folder. That is the whole deployment. Netlify, Cloudflare Pages,
-GitHub Pages, Vercel, or plain FTP to any web host — they all serve it as-is.
-Set `static-site` as the publish directory and leave the build command empty.
+Upload the folder. There is no build step, so any static host will do.
+
+It currently lives on Netlify at **https://0-project.netlify.app**, in preview
+mode:
+
+- `_headers` sends `X-Robots-Tag: noindex, nofollow` on every response, so the
+  preview URL stays out of Google while the pages name a domain that is not
+  live yet. **Delete that line when the real domain goes up** — see
+  [docs/05-domain-and-go-live.md](docs/05-domain-and-go-live.md).
+- `_redirects` returns a 404 for `/tools/*`. Those files ship with the folder
+  but are scaffolding, not site.
+- `404.html` is Netlify's error page for anything unknown.
 
 ## What is where
 
@@ -40,7 +49,7 @@ algemene-voorwaarden.html   \
 privacybeleid.html           |  Legal
 cookiebeleid.html           /
 
-css/
+assets/css/
   main.css        Entry point. Every page links this.
   fonts.css       Self-hosted Sora + Inter
   tokens.css      Design tokens — colour, type, space. Start here.
@@ -50,32 +59,46 @@ css/
   motion.css      Page-entrance animation (.u-enter) — CSS only
   page-*.css      Styles used by exactly one page
 
-js/
+assets/js/
   config.js       ⚙️ Everything you are likely to change. Start here.
   shared.js       Header, footer, cookie banner, accordion, buy buttons
   mocktails.js    Recipe data + grid rendering + filters
   contact.js      Contact form
   bevestiging.js  Confirmation page
 
+docs/
+  README.md            The steps only you can do — index and running order
+  01-stripe.md           02-delivery.md        |
+  03-contact-form.md    |  One file per open item: what to click,
+  04-newsletter.md      |  what it produces, how to check it
+  05-domain-and-go-live.md
+  06-legal-and-content.md
+
+_headers  _redirects  404.html   Netlify: noindex, /tools/* off, error page
+
 tools/
   go-live.ps1          Windows: runs the wizard under Git Bash. Start here.
   go-live.sh           The wizard itself — a walkthrough of everything below
-  set-config.mjs       Writes one value into js/config.js (used by go-live.sh)
+  set-config.mjs       Writes one value into assets/js/config.js (used by go-live.sh)
   check-integration.py Drives the real pages against fake providers
 
-fonts/  brand/  favicon.png  apple-touch-icon.png  robots.txt  sitemap.xml
+fonts/  assets/img/brand/  favicon.png  apple-touch-icon.png  robots.txt  sitemap.xml
 ```
 
 `tools/` is for you, not for the server — there is no need to upload it.
 
 The header and footer are not copy-pasted into all nine pages. They are built
-once in `js/shared.js` and injected into the `<div data-site-header>` and
+once in `assets/js/shared.js` and injected into the `<div data-site-header>` and
 `<div data-site-footer>` placeholders. Change a nav link there and it changes
 everywhere.
 
 ## Before you go live
 
-Everything below is in **`js/config.js`**, with a comment explaining each one.
+**The steps only you can do — accounts, dashboards, the domain, the legal
+review — are written up one per file in [`docs/`](docs/README.md).** Start
+there; it says what to click and what each step produces.
+
+Everything below is in **`assets/js/config.js`**, with a comment explaining each one.
 
 **The short way — run the wizard:**
 
@@ -97,7 +120,7 @@ Git Bash that came with Git for Windows and hands the script to that.
 Six stages: the price, the Stripe Payment Link, how the workbook reaches the
 buyer, the contact form, the newsletter, and switching demo mode off. It opens
 each dashboard for you, tells you exactly what to click, checks what you paste
-and writes it into `js/config.js` itself. Ctrl-C any time — it remembers your
+and writes it into `assets/js/config.js` itself. Ctrl-C any time — it remembers your
 answers in `tools/launch-answers.env` and picks up where you left off.
 
 The rest of this section is the same ground at walking pace, for when you want
@@ -112,7 +135,7 @@ python tools/check-integration.py
 That serves the site locally, points the forms at a mock provider and drives
 every page in a headless browser — 25 checks covering the buy buttons, both
 delivery modes, both newsletter modes, the contact form and its error path.
-It never touches your real `js/config.js`. It needs Playwright once:
+It never touches your real `assets/js/config.js`. It needs Playwright once:
 `pip install playwright && playwright install chromium`.
 
 ### 1. Sell the workbook — `PRODUCT.paymentLink`
@@ -142,7 +165,7 @@ accident. What the buy buttons show in the meantime depends on `DEMO`:
 
 Demo mode is for showing the site to someone; switch it off while building, so
 the page keeps telling you what is still missing. The developer hint is logged
-to the console either way. Both texts live in `DEMO` in `js/config.js`.
+to the console either way. Both texts live in `DEMO` in `assets/js/config.js`.
 
 Stripe handles the card, EU VAT, the receipt and the invoice.
 
@@ -215,21 +238,26 @@ fallback rather than silently swallowing messages.
 
 ### 5. The recipes
 
-`js/mocktails.js` generates 30 placeholder records. Replace the array with the
-real recipes (same shape) and drop photography into a `mocktails/` folder next
-to this file, setting each `image` to `mocktails/<name>.jpg`. Cards fall back
-to a branded placeholder tile until then.
+`assets/js/mocktails.js` holds the thirty recipes as a plain array — five per
+smaakprofiel, matching the six filter buttons on the page. Photography lives in
+`mocktails/<slug>.jpg` (4:3, 1000×750); each record points at its own file.
+
+The photos are public domain (CC0/PDM), sourced through Openverse, so they
+carry no attribution obligation. `assets/img/mocktails/credits.json` records the origin,
+creator and licence of every image — keep it in step if you swap one out. A
+card still falls back to a branded tile if `image` is empty, so a missing file
+degrades quietly rather than breaking the grid.
 
 ## Notes
 
-**Fonts are self-hosted**, in `fonts/`. That is deliberate: the privacy policy
+**Fonts are self-hosted**, in `assets/fonts/`. That is deliberate: the privacy policy
 promises we only share data with parties needed to run the site, and loading
 Google Fonts would hand every visitor's IP address to Google. Only the latin
 and latin-ext subsets are bundled — enough for Dutch.
 
 **The cookie banner** stores the choice in `localStorage` under
 `0pct-cookie-consent` and does nothing else. If you add analytics, hook it to
-`choice === 'all'` — there is a TODO marking the spot in `js/shared.js`.
+`choice === 'all'` — there is a TODO marking the spot in `assets/js/shared.js`.
 
 **JavaScript is required** for the header, footer, cookie banner, the recipe
 grid and the buy buttons. Everything else — all the copy, the headings, the
@@ -239,5 +267,5 @@ rather than collapsed when JS is off, which is the right fallback.
 
 **Adding a page**: copy the closest existing page, change the `<head>`, keep
 the `data-site-header` / `data-site-footer` placeholders, and add a `<url>` to
-`sitemap.xml`. If it needs its own styles, make a `css/page-<name>.css` and
+`sitemap.xml`. If it needs its own styles, make a `assets/css/page-<name>.css` and
 link it after `main.css`.

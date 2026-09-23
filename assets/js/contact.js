@@ -2,14 +2,14 @@
  * Contact form.
  *
  * A static site cannot send mail by itself, so the form POSTs to whatever
- * service is configured in `ENDPOINTS.contact` (js/config.js) — Formspree,
+ * service is configured in `ENDPOINTS.contact` (assets/js/config.js) — Formspree,
  * Basin and Formspark all take exactly this shape. The validation rules below
  * are the same ones the old server action applied.
  *
  * It sends form-encoded fields rather than JSON, because that is what an
  * ordinary HTML form would have sent and every service accepts it; the Accept
  * header is what makes them answer with JSON instead of redirecting to their
- * own thank-you page. The shared helpers live in js/shared.js (window.FORMS).
+ * own thank-you page. The shared helpers live in assets/js/shared.js (window.FORMS).
  *
  * Note that client-side validation is a convenience, not a guarantee — anyone
  * can POST to the endpoint directly. Every form service worth using does its
@@ -64,7 +64,7 @@
 
 			if (!window.ENDPOINTS.contact) {
 				showError(
-					'Het formulier is nog niet aangesloten. Zet ENDPOINTS.contact in js/config.js, of mail ons rechtstreeks.'
+					'Het formulier is nog niet aangesloten. Zet ENDPOINTS.contact in assets/js/config.js, of mail ons rechtstreeks.'
 				);
 				return;
 			}
