@@ -21,6 +21,22 @@
 .hero__title {
 	margin-bottom: 2rem;
 }
+/* The one plain sentence on the page: what this actually is, stated before
+   the copy starts playing with negations. Sized between lead and body so it
+   reads as explanation, not as another claim. */
+.hero__intro {
+	max-width: 42ch;
+	margin-bottom: 1.75rem;
+	font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);
+	line-height: 1.6;
+	color: var(--color-ink-muted);
+}
+.hero__intro strong {
+	font-family: var(--font-display);
+	font-weight: 700;
+	color: var(--color-ink);
+}
+
 .hero__negations {
 	font-family: var(--font-display);
 	font-weight: 600;
@@ -135,6 +151,11 @@
 }
 .hero__line:nth-child(2) > span {
 	animation-delay: 200ms;
+}
+
+/* Between the second title line (200ms) and the first negation (340ms). */
+.hero__intro {
+	animation-delay: 280ms;
 }
 
 .hero__negations > p:nth-child(1) {
@@ -282,6 +303,52 @@
 	.hero__mark::before {
 		animation: none;
 		opacity: 1;
+	}
+}
+
+/* ─── IN HET KORT ─────────────────────────────────────────────────────────
+   Three plain answers, sitting on the hero's own surface so they read as the
+   end of the opening rather than the start of a new chapter. Cards, because
+   three short answers side by side are easier to scan than three paragraphs.
+   ----------------------------------------------------------------------- */
+.kort__label {
+	margin-bottom: 1.5rem;
+}
+.kort__grid {
+	display: grid;
+	gap: 1rem;
+}
+.kort__card {
+	/* The hero surface is creme; the raised card needs a touch more contrast
+	   than the hairline gives it on that background. */
+	border-color: var(--color-line-strong);
+}
+.kort__title {
+	margin-bottom: 0.75rem;
+}
+/* The accent tick that opens each answer — the same mark .welkom__specs uses,
+   so the two lists read as the same voice. */
+.kort__title::before {
+	content: '';
+	display: block;
+	width: 1.5rem;
+	height: 2px;
+	margin-bottom: 0.9rem;
+	background: var(--color-accent);
+}
+.kort__text {
+	color: var(--color-ink-muted);
+	line-height: 1.6;
+}
+.kort__more {
+	margin-top: 1.75rem;
+	color: var(--color-ink-muted);
+}
+
+@media (min-width: 48rem) {
+	.kort__grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem;
 	}
 }
 

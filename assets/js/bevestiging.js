@@ -48,7 +48,7 @@
 			return (
 				'<div class="buy__demo" role="note">' +
 				'<p class="buy__demo-tag">Demo</p>' +
-				'<p class="buy__demo-text">Er is niets betaald — dit is de demoversie. ' +
+				'<p class="buy__demo-text">Er is niets betaald, dit is de demoversie. ' +
 				'Na een echte aankoop staat hier de downloadknop, of de melding dat het ' +
 				'werkboek onderweg is naar je mailbox.</p>' +
 				'</div>'

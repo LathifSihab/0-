@@ -15,9 +15,9 @@ window.SITE = {
 	email: 'info@0procentexperiment.be',
 	/** TODO: fill in the legal entity details for the legal pages + invoices. */
 	company: {
-		name: 'TODO — juridische naam',
-		address: 'TODO — adres',
-		vat: 'TODO — BTW-nummer'
+		name: 'TODO: juridische naam',
+		address: 'TODO: adres',
+		vat: 'TODO: BTW-nummer'
 	},
 	social: {
 		instagram: '',
@@ -55,7 +55,7 @@ window.SITE = {
  */
 window.PRODUCT = {
 	id: 'werkboek-30-dagen',
-	name: '0% Experiment — Digitaal Werkboek',
+	name: '0% Experiment · Digitaal Werkboek',
 	subtitle: '30 dagen nieuwsgierig naar jezelf',
 	priceCents: 0,
 	priceConfirmed: false,
@@ -96,11 +96,11 @@ window.DEMO = {
 	 */
 	target: 'bevestiging.html',
 
-	note: 'Dit is een demoversie van de site. De kassa is nog niet open — deze knop loopt gewoon door naar de bevestigingspagina, er wordt niets betaald en niets verstuurd.',
+	note: 'Dit is een demoversie van de site. De kassa is nog niet open, deze knop loopt gewoon door naar de bevestigingspagina, er wordt niets betaald en niets verstuurd.',
 
 	/** Stands in for the price tag. Keep it wordy: never show a fake number. */
 	price: 'Prijs volgt',
-	priceNote: 'Nog niet vastgelegd — dit is een demoversie.'
+	priceNote: 'Nog niet vastgelegd. Dit is een demoversie.'
 };
 
 /**

@@ -29,7 +29,7 @@
 				'Veel ijs'
 			],
 			steps: [
-				'Druk de komkommer en de munt zacht aan in het glas — kneuzen, niet fijnmalen.',
+				'Druk de komkommer en de munt zacht aan in het glas: kneuzen, niet fijnmalen.',
 				'Voeg limoensap en agavesiroop toe en roer tot de siroop is opgelost.',
 				'Vul het glas tot de rand met ijs.',
 				'Schenk de tonic er langzaam overheen en roer één keer van onder naar boven.'
@@ -52,7 +52,7 @@
 				'Crushed ice'
 			],
 			steps: [
-				'Sla de basilicum één keer tussen je handen — zo komen de oliën vrij zonder bitter te worden.',
+				'Sla de basilicum één keer tussen je handen: zo komen de oliën vrij zonder bitter te worden.',
 				'Shake basilicum, citroensap, siroop en appelsap kort met ijs.',
 				'Zeef in een tumbler gevuld met crushed ice.',
 				'Top af met spuitwater en steek een vers basilicumtopje erin.'
@@ -122,7 +122,7 @@
 			],
 			steps: [
 				'Mix de watermeloen glad en zeef door een fijne zeef.',
-				'Roer limoensap, siroop en het snuifje zout erdoor — het zout maakt de meloen zoeter.',
+				'Roer limoensap, siroop en het snuifje zout erdoor: het zout maakt de meloen zoeter.',
 				'Schenk over veel ijs.',
 				'Werk af met een blaadje munt.'
 			]
@@ -143,7 +143,7 @@
 				'Brede zeste van sinaasappel'
 			],
 			steps: [
-				'Leg één grote ijsklont in de tumbler — hoe minder oppervlak, hoe trager de verdunning.',
+				'Leg één grote ijsklont in de tumbler: hoe minder oppervlak, hoe trager de verdunning.',
 				'Schenk alle vloeistoffen erbij en roer 20 seconden.',
 				'Knijp de zeste boven het glas zodat de olie op het oppervlak landt.',
 				'Leg de zeste in het glas.'
@@ -167,7 +167,7 @@
 			steps: [
 				'Vul het glas volledig met ijs en schenk de tonic erover.',
 				'Laat de bubbels 30 seconden tot rust komen.',
-				'Giet de espresso langzaam over de bolle kant van een lepel — je krijgt twee lagen.',
+				'Giet de espresso langzaam over de bolle kant van een lepel: je krijgt twee lagen.',
 				'Niet roeren. Schijfje sinaasappel erbij.'
 			]
 		},
@@ -190,7 +190,7 @@
 				'Shake siroop, citroensap en bitter 12 seconden met ijs.',
 				'Dubbel zeven in een gekoelde coupe.',
 				'Vul voorzichtig aan met spuitwater.',
-				'Serveer zonder ijs — koud, kort, klaar.'
+				'Serveer zonder ijs: koud, kort, klaar.'
 			]
 		},
 		{
@@ -233,7 +233,7 @@
 			],
 			steps: [
 				'Vul het glas royaal met ijs.',
-				'Schenk eerst de bitter, dan het mousserende — in die volgorde blijft de bubbel langer.',
+				'Schenk eerst de bitter, dan het mousserende: in die volgorde blijft de bubbel langer.',
 				'Kort aanvullen met spuitwater.',
 				'Halve schijf sinaasappel in het glas laten zakken.'
 			]
@@ -278,7 +278,7 @@
 				'Stengel bleekselder'
 			],
 			steps: [
-				'Rol alle ingrediënten tussen twee glazen heen en weer — shaken maakt tomatensap schuimig.',
+				'Rol alle ingrediënten tussen twee glazen heen en weer: shaken maakt tomatensap schuimig.',
 				'Schenk in een longdrink met ijs.',
 				'Proef en corrigeer met peper of citroen.',
 				'Zet de selderstengel rechtop in het glas.'
@@ -301,7 +301,7 @@
 				'IJsblokjes'
 			],
 			steps: [
-				'Roer kurkuma, peper en gembersiroop door het sinaasappelsap — de peper maakt de kurkuma beter opneembaar.',
+				'Roer kurkuma, peper en gembersiroop door het sinaasappelsap: de peper maakt de kurkuma beter opneembaar.',
 				'Zeef in een glas met ijs.',
 				'Vul aan met tonic.',
 				'Roer één keer door voor de kleurstreep.'
@@ -323,7 +323,7 @@
 				'IJs om te shaken'
 			],
 			steps: [
-				'Shake alles eerst 15 seconden zonder ijs — zo bouwt het schuim op.',
+				'Shake alles eerst 15 seconden zonder ijs: zo bouwt het schuim op.',
 				'Voeg ijs toe en shake nog eens 15 seconden.',
 				'Dubbel zeven in een gekoelde coupe.',
 				'Laat 30 seconden staan tot de schuimlaag strak is.'
@@ -439,7 +439,7 @@
 			],
 			steps: [
 				'Druk de bramen en de salie aan met citroensap en siroop.',
-				'Zeef in een longdrinkglas — of laat de pitjes zitten als je dat lekker vindt.',
+				'Zeef in een longdrinkglas, of laat de pitjes zitten als je dat lekker vindt.',
 				'Vul met crushed ice.',
 				'Aanvullen met spuitwater en twee hele bramen erop.'
 			]
@@ -484,7 +484,7 @@
 				'Klein beetje honing'
 			],
 			steps: [
-				'Verwarm alles samen op laag vuur — laat het nooit koken.',
+				'Verwarm alles samen op laag vuur. Laat het nooit koken.',
 				'Laat 6 minuten trekken tot het huis ernaar ruikt.',
 				'Zeef in een hittebestendig glas.',
 				'Kaneelstokje erin laten staan.'
@@ -553,7 +553,7 @@
 			steps: [
 				'Verwarm de melk met de cacao en klop glad.',
 				'Voeg de chocolade in stukjes toe en roer tot ze volledig gesmolten is.',
-				'Chili en zout erdoor — proef voor je meer chili neemt.',
+				'Chili en zout erdoor. Proef voor je meer chili neemt.',
 				'Schenk in en rasp er wat chocolade over.'
 			]
 		},
@@ -573,7 +573,7 @@
 			],
 			steps: [
 				'Duw de munt stevig in een hittebestendig glas.',
-				'Overgiet met water van 90 °C — kokend water maakt de munt bitter.',
+				'Overgiet met water van 90 °C: kokend water maakt de munt bitter.',
 				'Laat 4 minuten trekken.',
 				'Honing en citroen erbij, en drink hem langzaam.'
 			]
@@ -614,7 +614,7 @@
 				'Dun lint sinaasappelzeste'
 			],
 			steps: [
-				'Koel beide flessen grondig — dit recept valt of staat met temperatuur.',
+				'Koel beide flessen grondig: dit recept valt of staat met temperatuur.',
 				'Schenk eerst het sinaasappelsap in de coupe.',
 				'Vul langzaam aan met mousserende wijn, tegen de wand van het glas.',
 				'Draai de zeste boven het glas en laat hem erin vallen.'
@@ -689,7 +689,7 @@
 		}
 	];
 
-	/** An advertiser block every 6 cards — visible, but never the main event. */
+	/** An advertiser block every 6 cards: visible, but never the main event. */
 	var AD_AFTER = [5, 17];
 
 	var filter = 'Alles';

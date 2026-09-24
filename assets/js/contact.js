@@ -78,7 +78,7 @@
 				onderwerp: onderwerp,
 				bericht: bericht,
 				// Form services show this as the subject line in your inbox.
-				_subject: '0% Experiment — ' + (onderwerp || 'nieuw bericht')
+				_subject: '0% Experiment · ' + (onderwerp || 'nieuw bericht')
 			};
 
 			fetch(window.ENDPOINTS.contact, {

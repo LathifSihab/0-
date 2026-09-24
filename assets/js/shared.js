@@ -75,8 +75,8 @@
 		mount.outerHTML =
 			'<header class="header">' +
 			'<div class="o-container header__inner">' +
-			'<a href="index.html" class="header__logo" aria-label="0% Experiment — naar de homepage">' +
-			'<img src="assets/img/brand/logo-mark.png" width="45" height="38" style="height: 38px; width: auto;" alt="0% Experiment — nieuwsgierig naar jezelf" decoding="async" />' +
+			'<a href="index.html" class="header__logo" aria-label="0% Experiment · naar de homepage">' +
+			'<img src="assets/img/brand/logo-mark.png" width="45" height="38" style="height: 38px; width: auto;" alt="0% Experiment · nieuwsgierig naar jezelf" decoding="async" />' +
 			'<span class="header__wordmark" aria-hidden="true">0% Experiment' +
 			'<span class="header__payoff">Nieuwsgierig naar jezelf.</span>' +
 			'</span>' +
@@ -124,7 +124,7 @@
 			'<footer class="footer u-surface-ink">' +
 			'<div class="o-container footer__inner">' +
 			'<div class="footer__brand">' +
-			'<img src="assets/img/brand/logo-mark.png" width="85" height="72" style="height: 72px; width: auto;" alt="0% Experiment — nieuwsgierig naar jezelf" loading="lazy" decoding="async" />' +
+			'<img src="assets/img/brand/logo-mark.png" width="85" height="72" style="height: 72px; width: auto;" alt="0% Experiment · nieuwsgierig naar jezelf" loading="lazy" decoding="async" />' +
 			'<p class="footer__wordmark u-font-display">0% Experiment</p>' +
 			'<p class="footer__tagline"><span class="u-accent">Nieuwsgierig</span> naar jezelf.</p>' +
 			'</div>' +
@@ -196,7 +196,7 @@
 			'<div>' +
 			'<p class="cookie__title">Eén vraag voor we beginnen.</p>' +
 			'<p class="cookie__body">We gebruiken noodzakelijke cookies om de site te laten werken. ' +
-			'Optionele cookies helpen ons te zien wat werkt — maar alleen als jij dat goed vindt. ' +
+			'Optionele cookies helpen ons te zien wat werkt, maar alleen als jij dat goed vindt. ' +
 			'<a href="cookiebeleid.html">Lees het cookiebeleid</a>.</p>' +
 			'</div>' +
 			'<div class="cookie__actions">' +
@@ -341,7 +341,7 @@
 					button.setAttribute('aria-disabled', 'true');
 				}
 				if (wrap) wrap.appendChild(demoPanel());
-				if (window.console && console.info) console.info('0% demo — ' + reason);
+				if (window.console && console.info) console.info('0% demo: ' + reason);
 				return;
 			}
 
@@ -463,7 +463,7 @@
 
 		// Double opt-in means the address is not on the list until they click the
 		// link in the mail, so the thank-you has to say that out loud.
-		var THANKS = 'Genoteerd. Kijk in je mailbox — je inschrijving is pas rond als je de bevestigingsmail opent.';
+		var THANKS = 'Genoteerd. Kijk in je mailbox. Je inschrijving is pas rond als je de bevestigingsmail opent.';
 
 		form.addEventListener('submit', function (event) {
 			event.preventDefault();
