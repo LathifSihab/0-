@@ -2,55 +2,145 @@
    PAGE — Het experiment (product.html)
    The .stack / .body / .pull / .no-list blocks are shared with the
    confirmation page and live in components.css.
+
+   The page used to be one narrow column of twelve stacked sections, which
+   read well but scrolled forever. It now works in two columns wherever the
+   content is genuinely paired — pitch + offer, story + aside — and in a grid
+   wherever it is a set rather than a sequence. Everything collapses to one
+   column below 64rem, so the phone still reads top to bottom.
    ========================================================================= */
 
-.phase-rule {
-	margin-block: var(--space-block);
+/* A .stack is capped at 46rem for reading comfort; the blocks that now run
+   full width need that cap lifted. */
+.stack--wide {
+	max-width: 62rem;
+}
+
+/* ─── OPENING + AANBOD ────────────────────────────────────────────────────
+   The buy card used to sit eight sections down. It now opens the page beside
+   the pitch and, from 64rem up, sticks while the pitch scrolls past.
+   ----------------------------------------------------------------------- */
+.lead__grid {
+	display: grid;
+	gap: var(--space-block);
+	align-items: start;
+}
+.lead__copy {
 	max-width: 46rem;
 }
 
+/* ─── DE OPBOUW ───────────────────────────────────────────────────────────
+   Four phases as a grid: the arc of the 30 days is visible at a glance
+   instead of after four screens of scrolling. Numbered by counter, because
+   the order is the point.
+   ----------------------------------------------------------------------- */
+.phases {
+	list-style: none;
+	margin: var(--space-block) 0 0;
+	padding: 0;
+	counter-reset: phase;
+	display: grid;
+	gap: 1rem;
+}
+.phase {
+	counter-increment: phase;
+	display: grid;
+	align-content: start;
+	gap: 0.5rem;
+}
+.phase__label {
+	font-size: var(--text-label);
+	letter-spacing: var(--text-label--letter-spacing);
+	text-transform: uppercase;
+	font-weight: 600;
+	color: var(--color-ink-faint);
+	display: flex;
+	align-items: baseline;
+	gap: 0.55rem;
+}
+.phase__label::before {
+	content: counter(phase, decimal-leading-zero);
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: 1rem;
+	color: var(--color-accent);
+	letter-spacing: 0;
+}
+.phase__title {
+	/* A quarter of the row is a narrow measure: the shared .t-h3 size wraps to
+	   four lines in it, so the card gets its own, smaller step. */
+	font-size: clamp(1.125rem, 1rem + 0.45vw, 1.375rem);
+	line-height: 1.15;
+	text-wrap: balance;
+}
+.phase__list {
+	list-style: none;
+	margin: 0.4rem 0 0;
+	padding: 0;
+	display: grid;
+	gap: 0.45rem;
+	font-size: var(--text-small);
+	line-height: 1.5;
+	color: var(--color-ink-muted);
+}
+.phase__list li {
+	position: relative;
+	padding-left: 1.1rem;
+}
+.phase__list li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.62em;
+	width: 0.5rem;
+	height: 2px;
+	background: var(--color-accent);
+}
+
+/* ─── MET EEN VERGROOTGLAS ────────────────────────────────────────────────
+   The story on the left, the one objection it has to answer on the right,
+   boxed so it reads as a note rather than more narrative.
+   ----------------------------------------------------------------------- */
+.magnify {
+	display: grid;
+	gap: var(--space-block);
+	align-items: start;
+}
 .finale {
 	margin-top: 0.5rem;
 }
 .finale__sub {
 	color: var(--color-accent);
 }
-
-.days {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+.slip {
+	border: var(--border-hair) solid color-mix(in srgb, var(--color-creme) 25%, transparent);
+	border-left: var(--border-strong) solid var(--color-accent);
+	border-radius: var(--radius-lg);
+	padding: clamp(1.25rem, 1rem + 1vw, 1.75rem);
 	display: grid;
-	gap: 0.5rem;
-	font-family: var(--font-display);
-	font-size: 1.125rem;
+	gap: 0.9rem;
+	align-content: start;
+	background: color-mix(in srgb, var(--color-antraciet) 22%, transparent);
 }
-.days span {
+.slip__title {
+	color: var(--color-ink-invert);
+}
+.slip__text {
+	font-size: var(--text-small);
+	line-height: 1.6;
+	color: color-mix(in srgb, var(--color-creme) 80%, transparent);
+}
+.slip__text strong {
+	font-family: var(--font-display);
+	color: var(--color-ink-invert);
+}
+.slip__pull {
+	font-size: var(--text-h3);
 	color: var(--color-accent);
-	font-weight: 700;
-	display: inline-block;
-	min-width: 4.25rem;
+	margin-top: 0.2rem;
 }
 
-.looking {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: grid;
-	gap: 0.4rem;
-	font-size: var(--text-lead);
-	color: color-mix(in srgb, var(--color-creme) 88%, transparent);
-}
-.looking li {
-	padding-left: 1.25rem;
-	border-left: 2px solid color-mix(in srgb, var(--color-creme) 20%, transparent);
-}
-.looking li:last-child {
-	border-left-color: var(--color-accent);
-	font-family: var(--font-display);
-	font-weight: 700;
-}
-
+/* ─── WAT ZIT ERIN ────────────────────────────────────────────────────── */
 .themes {
 	list-style: none;
 	display: flex;
@@ -59,7 +149,26 @@
 	margin: 0;
 	padding: 0;
 }
+.mocktail-link {
+	font-size: var(--text-small);
+	color: var(--color-ink-faint);
+}
+.mocktail-link a {
+	color: var(--color-ink);
+	text-decoration-color: var(--color-accent);
+	text-decoration-thickness: 2px;
+}
 
+/* ─── NA 30 DAGEN + DE FOTO ─────────────────────────────────────────────
+   The photo used to be a section of its own, nine one-line paragraphs long.
+   As an aside beside the "misschien" list it keeps its weight without
+   costing a screen.
+   ----------------------------------------------------------------------- */
+.after {
+	display: grid;
+	gap: var(--space-block);
+	align-items: start;
+}
 .maybe {
 	list-style: none;
 	margin: 0;
@@ -82,26 +191,23 @@
 	font-weight: 800;
 	color: var(--color-accent);
 }
-
-.mocktail-link {
-	font-size: var(--text-small);
-	color: var(--color-ink-faint);
-}
-.mocktail-link a {
-	color: var(--color-ink);
-	text-decoration-color: var(--color-accent);
-	text-decoration-thickness: 2px;
-}
-
-.offer {
+.photo {
 	display: grid;
-	gap: var(--space-block);
-	max-width: none;
-	align-items: start;
+	gap: 0.85rem;
+	align-content: start;
+	border-color: var(--color-line-strong);
 }
-.offer__question {
-	color: var(--color-ink-invert);
+.photo__pull {
+	font-size: var(--text-h3);
+	text-wrap: balance;
 }
+.photo__text {
+	font-size: var(--text-small);
+	line-height: 1.6;
+	color: var(--color-ink-muted);
+}
+
+/* ─── AANBOD KAART ─────────────────────────────────────────────────────── */
 .offer__card {
 	background: var(--color-creme);
 	color: var(--color-antraciet);
@@ -146,10 +252,15 @@
 	text-align: center;
 }
 
+/* ─── KLAAR ────────────────────────────────────────────────────────────── */
 .ready {
 	display: grid;
 	gap: 1.5rem;
 	justify-items: start;
+	max-width: 46rem;
+}
+.ready__question {
+	color: var(--color-ink-invert);
 }
 .ready__body {
 	font-size: var(--text-lead);
@@ -159,9 +270,54 @@
 	line-height: 1.7;
 }
 
+/* ─── TWO ABREAST ─────────────────────────────────────────────────────────
+   From tablet up the long question lists run in two columns. They are sets,
+   not sequences, so reading order across a break costs nothing.
+   ----------------------------------------------------------------------- */
+@media (min-width: 48rem) {
+	.c-questions--split,
+	.maybe {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		column-gap: 2.5rem;
+	}
+	.maybe li {
+		align-self: start;
+	}
+	.phases {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1.25rem;
+	}
+}
+
 @media (min-width: 64rem) {
-	.offer {
+	.lead__grid {
 		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
 		gap: 4rem;
+	}
+	/* Clears the sticky header (4.75rem) with a little air. */
+	.lead__card {
+		position: sticky;
+		top: 6rem;
+	}
+	.phases {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+	.magnify,
+	.after {
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+		gap: 3.5rem;
+	}
+	/* .after is already two columns here, so the list inside it goes back to
+	   one rather than splitting a narrow cell again. */
+	.maybe {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+/* The sticky card is only ever a convenience; a viewer who cannot spare the
+   height should get the normal flow back. */
+@media (max-height: 44rem) {
+	.lead__card {
+		position: static;
 	}
 }
