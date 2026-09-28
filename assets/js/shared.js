@@ -329,6 +329,19 @@
 				return;
 			}
 
+			if (window.isMockCheckout()) {
+				button.setAttribute('href', 'mock-checkout.html');
+				if (wrap) {
+					wrap.appendChild(
+						notePanel(
+							'Test',
+							'Testkassa: deze knop opent een nagemaakte Stripe-checkout op je eigen computer. Testkaart 4242 4242 4242 4242. Er wordt niets betaald.'
+						)
+					);
+				}
+				return;
+			}
+
 			var reason = !link
 				? 'De verkoop staat nog niet open. Zet paymentLink in assets/js/config.js zodra je Stripe Payment Link klaar is.'
 				: 'De prijs staat nog niet vast. Zet priceCents + priceConfirmed in assets/js/config.js.';
@@ -364,13 +377,20 @@
 
 	/** The placeholder that stands in for the checkout while it is closed. */
 	function demoPanel() {
+		return notePanel('Demo', window.DEMO.note);
+	}
+
+	/** A tagged, dashed note: used by both the demo and the mock checkout. */
+	function notePanel(tag, text) {
 		var panel = document.createElement('div');
 		panel.className = 'buy__demo';
 		panel.setAttribute('role', 'note');
 		panel.innerHTML =
-			'<p class="buy__demo-tag">Demo</p>' +
+			'<p class="buy__demo-tag">' +
+			escapeHtml(tag) +
+			'</p>' +
 			'<p class="buy__demo-text">' +
-			escapeHtml(window.DEMO.note) +
+			escapeHtml(text) +
 			'</p>';
 		return panel;
 	}
@@ -385,11 +405,17 @@
 			// In demo mode the tag says a price is coming — never a number.
 			// A placeholder price is the one thing that must not ship.
 			var demo = !priced && isDemo();
+			// The mock price is local-only (see MOCK in config.js) and says so.
+			var mock = window.isMockCheckout();
 
 			tag.className =
-				'price' + (large ? ' price--lg' : '') + (priced || demo ? '' : ' price--todo');
+				'price' + (large ? ' price--lg' : '') + (priced || demo || mock ? '' : ' price--todo');
 
-			if (priced) {
+			if (mock && !priced) {
+				tag.innerHTML =
+					escapeHtml(window.formatPrice(window.MOCK.priceCents, window.PRODUCT.currency)) +
+					'<span class="price__note">testprijs · niet de echte prijs</span>';
+			} else if (priced) {
 				tag.innerHTML =
 					escapeHtml(window.formatPrice(window.PRODUCT.priceCents, window.PRODUCT.currency)) +
 					'<span class="price__note">eenmalig · incl. btw</span>';

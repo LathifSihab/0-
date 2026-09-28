@@ -104,6 +104,47 @@ window.DEMO = {
 };
 
 /**
+ * Mock checkout — the whole purchase flow, testable without a Stripe account.
+ *
+ * DEMO shows the site; MOCK lets you actually click through a purchase:
+ * a test price on the offer card, a stand-in for Stripe's hosted checkout
+ * (mock-checkout.html) with Stripe's own test card numbers, and a return to
+ * bevestiging.html with a session id and a working sample download.
+ *
+ * Three locks keep it from ever reaching a real buyer:
+ *   · it only runs on the hosts listed below (your own machine),
+ *   · a real `paymentLink` switches it off completely,
+ *   · _redirects serves a 404 for mock-checkout.html and assets/mock/ online.
+ *
+ * Every value here is made up. None of it is the client's price or file.
+ *
+ * Test cards on the mock checkout (same numbers Stripe uses in test mode):
+ *   4242 4242 4242 4242  payment succeeds
+ *   4000 0000 0000 0002  card declined
+ *   4000 0000 0000 9995  insufficient funds
+ *   Bancontact           pick "Autoriseren" or "Weigeren" on the next screen
+ */
+window.MOCK = {
+	enabled: true,
+	hosts: ['localhost', '127.0.0.1'],
+	priceCents: 2700,
+	/** 'download' shows the sample file, 'email' tests the inbox message. */
+	deliveryMode: 'download',
+	downloadUrl: 'assets/mock/werkboek-voorbeeld.pdf'
+};
+
+/** True when the mock checkout should take over the buy buttons. */
+window.isMockCheckout = function isMockCheckout() {
+	var mock = window.MOCK;
+	return Boolean(
+		mock &&
+			mock.enabled &&
+			!window.PRODUCT.paymentLink &&
+			(mock.hosts || []).indexOf(window.location.hostname) !== -1
+	);
+};
+
+/**
  * Form endpoints.
  *
  * Both forms need somewhere to POST to, because a static site cannot send

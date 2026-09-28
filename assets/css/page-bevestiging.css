@@ -89,3 +89,113 @@
 .stack.u-enter > .pull {
 	animation-delay: 580ms;
 }
+
+/* ─── FACTUUR (testvoorbeeld) ────────────────────────────────────────────
+   Only rendered after a mock checkout (bevestiging.js → renderMockInvoice).
+   Paper on the dark section, so it reads as a document, not as page copy. */
+.invoice-doc {
+	display: grid;
+	gap: 1.25rem;
+	padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+	border-radius: var(--radius-lg);
+	background: var(--color-creme);
+	color: var(--color-antraciet);
+	font-size: var(--text-small);
+	line-height: var(--text-small--line-height);
+}
+.invoice-doc__stamp {
+	justify-self: start;
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: var(--text-label);
+	letter-spacing: var(--text-label--letter-spacing);
+	text-transform: uppercase;
+	background: var(--color-accent);
+	color: var(--color-accent-ink);
+	padding: 0.4em 0.75em 0.35em;
+	border-radius: var(--radius-pill);
+}
+.invoice-doc__head,
+.invoice-doc__parties {
+	display: grid;
+	gap: 1.25rem;
+}
+@media (min-width: 40rem) {
+	.invoice-doc__head {
+		grid-template-columns: auto 1fr;
+	}
+	.invoice-doc__parties {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+.invoice-doc__title {
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: var(--text-h3);
+	line-height: var(--text-h3--line-height);
+}
+.invoice-doc__label {
+	font-weight: 700;
+}
+.invoice-doc__parties p {
+	overflow-wrap: anywhere;
+}
+.invoice-doc__lines {
+	width: 100%;
+	border-collapse: collapse;
+}
+.invoice-doc__lines th,
+.invoice-doc__lines td {
+	text-align: left;
+	padding: 0.5rem 0.5rem 0.5rem 0;
+	border-bottom: var(--border-hair) solid var(--color-line-strong);
+	vertical-align: top;
+}
+.invoice-doc__lines th:last-child,
+.invoice-doc__lines td:last-child {
+	text-align: right;
+	padding-right: 0;
+}
+.invoice-doc__totals {
+	display: grid;
+	gap: 0.3rem;
+	margin: 0;
+	justify-self: end;
+	min-width: min(100%, 18rem);
+}
+.invoice-doc__totals div {
+	display: flex;
+	justify-content: space-between;
+	gap: 1.5rem;
+}
+.invoice-doc__totals dd {
+	margin: 0;
+}
+.invoice-doc__grand {
+	font-weight: 700;
+	border-top: var(--border-hair) solid var(--color-antraciet);
+	padding-top: 0.3rem;
+}
+.invoice-doc__foot {
+	color: var(--color-ink-muted);
+}
+.invoice-doc .c-btn {
+	justify-self: start;
+}
+
+@media print {
+	body * {
+		visibility: hidden;
+	}
+	.invoice-doc,
+	.invoice-doc * {
+		visibility: visible;
+	}
+	.invoice-doc {
+		position: absolute;
+		inset: 0 0 auto 0;
+	}
+	.invoice-doc .c-btn {
+		display: none;
+	}
+}

@@ -126,8 +126,11 @@ with sync_playwright() as p:
 
     # A context of its own: a cached config.js from the checks above would
     # switch demo mode off for the wrong reason.
+    # The checker runs on 127.0.0.1, where the mock checkout would take over,
+    # so switch it off to test the demo on its own.
     demo_ctx = browser.new_context(viewport={'width': 1280, 'height': 900})
     page = demo_ctx.new_page()
+    configured(page, "window.MOCK.enabled=false;")
     page.goto(BASE + 'bevestiging.html')
     page.wait_for_timeout(600)
     slots = page.eval_on_selector_all('[data-download]', 'e=>e.length')
@@ -137,6 +140,66 @@ with sync_playwright() as p:
           'Er is niets betaald' in page.eval_on_selector('[data-download]', 'e=>e.textContent'))
     page.close()
     demo_ctx.close()
+
+    # 2b - Mock checkout, with the untouched config -------------------------
+    mock_ctx = browser.new_context(viewport={'width': 1280, 'height': 900})
+    mock_ctx.add_init_script("try{localStorage.setItem('0pct-cookie-consent','{}')}catch(e){}")
+    page = mock_ctx.new_page()
+    page.goto(BASE + 'product.html')
+    page.wait_for_timeout(600)
+    check('mock: buy button opens the test checkout',
+          page.eval_on_selector('[data-buy]', "e=>e.getAttribute('href')") == 'mock-checkout.html')
+    check('mock: test price is labelled as such',
+          'testprijs' in page.eval_on_selector('[data-price]', 'e=>e.textContent'))
+    page.goto(BASE + 'mock-checkout.html')
+    page.wait_for_timeout(400)
+    page.mouse.wheel(0, 600)
+    page.wait_for_timeout(300)
+    check('mock: checkout page scrolls',
+          page.evaluate('window.scrollY') > 0)
+    page.click('[data-mock-submit]')
+    check('mock: no payment without consent to immediate delivery',
+          'voorwaarden' in page.eval_on_selector('[data-mock-error]', 'e=>e.textContent')
+          and 'mock-checkout' in page.url)
+    page.check('[data-mock-consent]')
+    page.fill('#card', '4000 0000 0000 0002')
+    page.click('[data-mock-submit]')
+    check('mock: declined card shows an error and stays put',
+          'geweigerd' in page.eval_on_selector('[data-mock-error]', 'e=>e.textContent')
+          and 'mock-checkout' in page.url)
+    page.check('[data-mock-business-toggle]')
+    page.fill('#card', '4242 4242 4242 4242')
+    page.click('[data-mock-submit]')
+    page.wait_for_url('**/bevestiging.html?session_id=cs_test_mock_*', timeout=5000)
+    page.wait_for_timeout(600)
+    check('mock: success returns with a session id as order reference',
+          page.eval_on_selector('[data-order-ref]', 'e=>e.textContent').startswith('cs_test_mock_'))
+    invoice = page.eval_on_selector('[data-invoice]', 'e=>e.hidden?"":e.textContent')
+    check('mock: invoice preview shows number, VAT split and buyer VAT number',
+          'TEST-' in invoice and '4,69' in invoice and 'BE0123456789' in invoice
+          and 'herroepingsrecht' in invoice, invoice[:120])
+    check('mock: sample download is offered',
+          page.eval_on_selector('[data-download] a', "e=>e.getAttribute('href')") == 'assets/mock/werkboek-voorbeeld.pdf')
+    check('mock: sample file is served',
+          page.request.get(BASE + 'assets/mock/werkboek-voorbeeld.pdf').ok)
+    page.goto(BASE + 'mock-checkout.html')
+    page.wait_for_timeout(400)
+    page.check('input[value=bancontact]')
+    page.check('[data-mock-consent]')
+    page.click('[data-mock-submit]')
+    page.click('[data-bancontact=fail]')
+    check('mock: refused Bancontact comes back with an error',
+          'Bancontact' in page.eval_on_selector('[data-mock-error]', 'e=>e.textContent'))
+    page.close()
+
+    page = mock_ctx.new_page()
+    configured(page, SOLD)
+    page.goto(BASE + 'mock-checkout.html')
+    page.wait_for_timeout(400)
+    check('mock: a real Payment Link switches the test checkout off',
+          page.eval_on_selector('[data-mock-blocked]', 'e=>e.hidden') is False)
+    page.close()
+    mock_ctx.close()
 
     # 3 - Contact form -----------------------------------------------------
     page = ctx.new_page()
@@ -206,7 +269,7 @@ with sync_playwright() as p:
     # 6 - Nothing throws, anywhere -----------------------------------------
     for name in ['index.html', 'product.html', 'mocktails.html', 'contact.html',
                  'bevestiging.html', 'algemene-voorwaarden.html', 'privacybeleid.html',
-                 'cookiebeleid.html', 'styleguide.html']:
+                 'cookiebeleid.html', 'styleguide.html', 'mock-checkout.html']:
         page = ctx.new_page()
         errors = []
         page.on('pageerror', lambda e: errors.append(str(e)))

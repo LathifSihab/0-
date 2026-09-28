@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="nl-BE">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#f5f1e8" />
+
+		<title>Testkassa · 0% Experiment</title>
+		<meta name="robots" content="noindex,nofollow" />
+
+		<link rel="icon" href="favicon.png" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/page-mock-checkout.css" />
+
+		<script src="assets/js/config.js" defer></script>
+		<script src="assets/js/mock-checkout.js" defer></script>
+	</head>
+
+	<!-- ─── TESTKASSA ────────────────────────────────────────────────────
+	     Stands in for Stripe's hosted checkout while there is no Payment
+	     Link, so the purchase flow can be tested end to end. Runs only on the
+	     hosts in MOCK.hosts (assets/js/config.js); _redirects 404s it online.
+	     No header or footer on purpose: the real checkout is off-site too. -->
+	<body class="testkassa">
+		<p class="testkassa__banner" role="note">
+			<strong>Testkassa</strong> · nagemaakt, alleen op je eigen computer · er wordt niets betaald
+		</p>
+
+		<main class="testkassa__grid" id="hoofdinhoud">
+			<section class="testkassa__summary">
+				<a class="testkassa__back" href="product.html#koop">← Terug</a>
+				<p class="t-eyebrow" data-mock="name"></p>
+				<p class="testkassa__total" data-mock="total"></p>
+				<dl class="testkassa__lines">
+					<div><dt>Subtotaal (excl. btw)</dt><dd data-mock="net"></dd></div>
+					<div><dt>Btw 21%</dt><dd data-mock="vat"></dd></div>
+					<div class="testkassa__lines-total"><dt>Totaal</dt><dd data-mock="total-line"></dd></div>
+				</dl>
+			</section>
+
+			<section class="testkassa__pay">
+				<p class="testkassa__blocked" data-mock-blocked hidden>
+					De testkassa staat uit. Ze werkt alleen lokaal, met <code>MOCK.enabled</code> aan en
+					zonder echte <code>paymentLink</code>.
+					<a href="product.html">Naar de productpagina</a>
+				</p>
+
+				<form class="testkassa__form" data-mock-form novalidate>
+					<div class="c-field">
+						<label class="c-label" for="email">E-mailadres</label>
+						<input class="c-input" id="email" name="email" type="email" required autocomplete="email" value="test@voorbeeld.be" />
+					</div>
+
+					<div class="c-field">
+						<label class="c-label" for="naam">Naam</label>
+						<input class="c-input" id="naam" name="naam" required autocomplete="name" value="Test Persoon" />
+					</div>
+
+					<!-- Stripe: Payment Link → "Allow business customers to provide tax IDs". -->
+					<label class="testkassa__check">
+						<input type="checkbox" name="business" data-mock-business-toggle />
+						Ik koop als bedrijf
+					</label>
+					<div class="testkassa__business" data-mock-business hidden>
+						<div class="c-field">
+							<label class="c-label" for="bedrijf">Bedrijfsnaam</label>
+							<input class="c-input" id="bedrijf" name="bedrijf" autocomplete="organization" value="Testbedrijf BV" />
+						</div>
+						<div class="c-field">
+							<label class="c-label" for="btw">Btw-nummer</label>
+							<input class="c-input" id="btw" name="btw" autocomplete="off" value="BE0123456789" />
+						</div>
+						<div class="c-field">
+							<label class="c-label" for="adres">Factuuradres</label>
+							<input class="c-input" id="adres" name="adres" autocomplete="street-address" value="Teststraat 1, 1000 Brussel" />
+						</div>
+					</div>
+
+					<fieldset class="testkassa__methods">
+						<legend class="c-label">Betaalmethode</legend>
+						<label><input type="radio" name="method" value="card" checked /> Kaart</label>
+						<label><input type="radio" name="method" value="bancontact" /> Bancontact</label>
+					</fieldset>
+
+					<div class="testkassa__card" data-mock-card>
+						<div class="c-field">
+							<label class="c-label" for="card">Kaartnummer</label>
+							<input class="c-input" id="card" name="card" inputmode="numeric" autocomplete="off" value="4242 4242 4242 4242" />
+						</div>
+						<div class="testkassa__row">
+							<div class="c-field">
+								<label class="c-label" for="exp">Vervaldatum</label>
+								<input class="c-input" id="exp" name="exp" autocomplete="off" value="12 / 34" />
+							</div>
+							<div class="c-field">
+								<label class="c-label" for="cvc">CVC</label>
+								<input class="c-input" id="cvc" name="cvc" inputmode="numeric" autocomplete="off" value="123" />
+							</div>
+						</div>
+						<ul class="testkassa__cards t-small">
+							<li><button type="button" data-card="4242 4242 4242 4242">4242 4242 4242 4242</button> gelukt</li>
+							<li><button type="button" data-card="4000 0000 0000 0002">4000 0000 0000 0002</button> kaart geweigerd</li>
+							<li><button type="button" data-card="4000 0000 0000 9995">4000 0000 0000 9995</button> onvoldoende saldo</li>
+						</ul>
+					</div>
+
+					<!-- Belgian consumer law (WER art. VI.53, 13°): for digital content the
+					     right of withdrawal only lapses with the buyer's explicit consent
+					     to immediate delivery. Stripe: Payment Link → "Require customers to
+					     accept your terms of service", with this text as custom text. -->
+					<label class="testkassa__check testkassa__consent">
+						<input type="checkbox" name="consent" data-mock-consent />
+						<span>
+							Ik ga akkoord met de <a href="algemene-voorwaarden.html" target="_blank">algemene voorwaarden</a>
+							en vraag om het werkboek meteen te leveren. Ik weet dat ik daardoor mijn
+							herroepingsrecht verlies.
+						</span>
+					</label>
+
+					<p class="testkassa__error" role="alert" data-mock-error hidden></p>
+
+					<button class="c-btn c-btn--primary c-btn--lg c-btn--block" type="submit" data-mock-submit></button>
+				</form>
+
+				<div class="testkassa__bancontact" data-mock-bancontact hidden>
+					<p class="t-h3">Bancontact (test)</p>
+					<p class="t-small">Zo ziet de bank-app eruit in Stripe's testmodus. Kies wat de koper doet.</p>
+					<div class="testkassa__row">
+						<button class="c-btn c-btn--primary" type="button" data-bancontact="ok">Autoriseren</button>
+						<button class="c-btn" type="button" data-bancontact="fail">Weigeren</button>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

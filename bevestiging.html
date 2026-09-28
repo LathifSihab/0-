@@ -79,6 +79,11 @@
 						<p class="order-ref" data-order-ref-wrap hidden>
 							Bestelnummer: <code data-order-ref></code>
 						</p>
+
+						<!-- Mock checkout only: a preview of the invoice Stripe will mail.
+						     The real one cannot be shown here, a static page cannot look an
+						     order up. Filled in by bevestiging.js. -->
+						<div data-invoice hidden></div>
 					</div>
 				</div>
 			</section>

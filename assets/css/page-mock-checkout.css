@@ -1,0 +1,158 @@
+/* =========================================================================
+   PAGE — Testkassa (mock-checkout.html)
+   Local-only stand-in for Stripe's hosted checkout. Two columns like the
+   real one: order summary on the left, payment on the right.
+   ========================================================================= */
+
+.testkassa {
+	min-height: 100vh;
+	background: var(--color-surface);
+}
+
+.testkassa__banner {
+	background: var(--color-accent);
+	color: var(--color-accent-ink);
+	font-size: var(--text-small);
+	text-align: center;
+	padding: 0.6rem var(--space-gutter);
+}
+
+.testkassa__grid {
+	display: grid;
+	gap: var(--space-block);
+	max-width: 60rem;
+	margin: 0 auto;
+	padding: var(--space-block) var(--space-gutter);
+}
+@media (min-width: 48rem) {
+	.testkassa__grid {
+		grid-template-columns: 1fr 1fr;
+		align-items: start;
+	}
+}
+
+.testkassa__summary,
+.testkassa__form,
+.testkassa__bancontact {
+	display: grid;
+	gap: 1rem;
+	align-content: start;
+}
+
+.testkassa__back {
+	font-size: var(--text-small);
+	color: var(--color-ink-muted);
+}
+
+.testkassa__total {
+	font-family: var(--font-display);
+	font-weight: 800;
+	font-size: var(--text-h2);
+	line-height: var(--text-h2--line-height);
+}
+
+.testkassa__lines {
+	display: grid;
+	gap: 0.4rem;
+	margin: 0;
+	font-size: var(--text-small);
+}
+.testkassa__lines div {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+}
+.testkassa__lines dd {
+	margin: 0;
+}
+.testkassa__lines-total {
+	border-top: var(--border-hair) solid var(--color-line-strong);
+	padding-top: 0.4rem;
+	font-weight: 700;
+}
+
+.testkassa__pay {
+	padding: 1.5rem;
+	border: var(--border-hair) solid var(--color-line-strong);
+	border-radius: var(--radius-lg);
+	background: var(--color-surface-raised);
+}
+
+.testkassa__methods {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1.25rem;
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+.testkassa__methods legend {
+	margin-bottom: 0.4rem;
+}
+
+.testkassa__check {
+	display: flex;
+	gap: 0.6rem;
+	align-items: flex-start;
+	font-size: var(--text-small);
+}
+.testkassa__check input {
+	margin-top: 0.3em;
+	flex: none;
+}
+.testkassa__consent a {
+	color: inherit;
+}
+.testkassa__business {
+	display: grid;
+	gap: 1rem;
+	padding-left: 1rem;
+	border-left: var(--border-strong) solid var(--color-line-strong);
+}
+.testkassa__business[hidden] {
+	display: none;
+}
+
+.testkassa__card {
+	display: grid;
+	gap: 1rem;
+}
+.testkassa__card[hidden],
+.testkassa__form[hidden],
+.testkassa__bancontact[hidden],
+.testkassa__error[hidden],
+.testkassa__blocked[hidden] {
+	display: none;
+}
+
+.testkassa__row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+}
+
+.testkassa__cards {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 0.25rem;
+	color: var(--color-ink-muted);
+}
+.testkassa__cards button {
+	font: inherit;
+	font-family: ui-monospace, monospace;
+	background: none;
+	border: 0;
+	padding: 0;
+	color: var(--color-ink);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.testkassa__error {
+	font-size: var(--text-small);
+	color: var(--color-critical);
+	border-left: 2px solid var(--color-critical);
+	padding-left: 0.75rem;
+}
