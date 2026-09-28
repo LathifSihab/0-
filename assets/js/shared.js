@@ -335,7 +335,7 @@
 					wrap.appendChild(
 						notePanel(
 							'Test',
-							'Testkassa: deze knop opent een nagemaakte Stripe-checkout op je eigen computer. Testkaart 4242 4242 4242 4242. Er wordt niets betaald.'
+							'Testkassa: deze knop opent een nagemaakte Stripe-checkout. Testkaart 4242 4242 4242 4242. Er wordt niets betaald.'
 						)
 					);
 				}

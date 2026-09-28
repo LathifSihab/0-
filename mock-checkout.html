@@ -19,11 +19,11 @@
 	<!-- ─── TESTKASSA ────────────────────────────────────────────────────
 	     Stands in for Stripe's hosted checkout while there is no Payment
 	     Link, so the purchase flow can be tested end to end. Runs only on the
-	     hosts in MOCK.hosts (assets/js/config.js); _redirects 404s it online.
+	     hosts in MOCK.hosts (assets/js/config.js): local and the Netlify preview.
 	     No header or footer on purpose: the real checkout is off-site too. -->
 	<body class="testkassa">
 		<p class="testkassa__banner" role="note">
-			<strong>Testkassa</strong> · nagemaakt, alleen op je eigen computer · er wordt niets betaald
+			<strong>Testkassa</strong> · nagemaakt voor de testversie · er wordt niets betaald
 		</p>
 
 		<main class="testkassa__grid" id="hoofdinhoud">

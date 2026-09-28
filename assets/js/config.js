@@ -111,10 +111,11 @@ window.DEMO = {
  * (mock-checkout.html) with Stripe's own test card numbers, and a return to
  * bevestiging.html with a session id and a working sample download.
  *
- * Three locks keep it from ever reaching a real buyer:
- *   · it only runs on the hosts listed below (your own machine),
- *   · a real `paymentLink` switches it off completely,
- *   · _redirects serves a 404 for mock-checkout.html and assets/mock/ online.
+ * Two locks keep it from ever reaching a real buyer:
+ *   · it only runs on the hosts listed below: your own machine and the
+ *     noindexed Netlify preview, so the client can click through it. The
+ *     real domain is not on the list, so it switches off there by itself.
+ *   · a real `paymentLink` switches it off completely.
  *
  * Every value here is made up. None of it is the client's price or file.
  *
@@ -126,7 +127,7 @@ window.DEMO = {
  */
 window.MOCK = {
 	enabled: true,
-	hosts: ['localhost', '127.0.0.1'],
+	hosts: ['localhost', '127.0.0.1', '0-project.netlify.app'],
 	priceCents: 2700,
 	/** 'download' shows the sample file, 'email' tests the inbox message. */
 	deliveryMode: 'download',
