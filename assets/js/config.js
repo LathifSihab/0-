@@ -28,10 +28,9 @@ window.SITE = {
 /**
  * The single digital product this shop sells.
  *
- * ⚠️ PRICE IS A PLACEHOLDER — not yet decided.
- * Set `priceCents` and flip `priceConfirmed` to true before going live.
- * The price block renders a visible "prijs nog te bepalen" state while this
- * is false, so a fake price can never ship by accident.
+ * Price confirmed by the client: €26,50 incl. btw.
+ * The price block renders a visible "prijs nog te bepalen" state whenever
+ * `priceConfirmed` is false, so a fake price can never ship by accident.
  *
  * ⚠️ `paymentLink` IS EMPTY — nothing can be sold yet.
  * This static site has no server, so it cannot talk to the Stripe API (that
@@ -57,8 +56,8 @@ window.PRODUCT = {
 	id: 'werkboek-30-dagen',
 	name: '0% Experiment · Digitaal Werkboek',
 	subtitle: '30 dagen nieuwsgierig naar jezelf',
-	priceCents: 0,
-	priceConfirmed: false,
+	priceCents: 2650,
+	priceConfirmed: true,
 	currency: 'eur',
 	/** Stripe Payment Link (https://buy.stripe.com/...). Empty = not for sale. */
 	paymentLink: '',
