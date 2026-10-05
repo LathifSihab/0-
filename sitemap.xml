@@ -6,11 +6,11 @@
 	confirmed in assets/js/config.js.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	<url><loc>https://0-project.netlify.app/</loc></url>
-	<url><loc>https://0-project.netlify.app/product.html</loc></url>
-	<url><loc>https://0-project.netlify.app/mocktails.html</loc></url>
-	<url><loc>https://0-project.netlify.app/contact.html</loc></url>
-	<url><loc>https://0-project.netlify.app/algemene-voorwaarden.html</loc></url>
-	<url><loc>https://0-project.netlify.app/privacybeleid.html</loc></url>
-	<url><loc>https://0-project.netlify.app/cookiebeleid.html</loc></url>
+	<url><loc>https://0procentexperiment.com/</loc></url>
+	<url><loc>https://0procentexperiment.com/product.html</loc></url>
+	<url><loc>https://0procentexperiment.com/mocktails.html</loc></url>
+	<url><loc>https://0procentexperiment.com/contact.html</loc></url>
+	<url><loc>https://0procentexperiment.com/algemene-voorwaarden.html</loc></url>
+	<url><loc>https://0procentexperiment.com/privacybeleid.html</loc></url>
+	<url><loc>https://0procentexperiment.com/cookiebeleid.html</loc></url>
 </urlset>

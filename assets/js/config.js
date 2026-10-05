@@ -8,8 +8,8 @@
 window.SITE = {
 	name: '0% Experiment',
 	tagline: 'Nieuwsgierig naar jezelf.',
-	/** TODO: confirm the production domain before launch. */
-	url: 'https://0-project.netlify.app',
+	/** Production domain, confirmed by the client (no hyphens). */
+	url: 'https://0procentexperiment.com',
 	locale: 'nl-BE',
 	/** TODO: mailbox still has to be created — see content document §5. */
 	email: 'info@0procentexperiment.be',

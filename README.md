@@ -25,7 +25,7 @@ form POST, which needs a real origin.
 
 Upload the folder. There is no build step, so any static host will do.
 
-It currently lives on Netlify at **https://0-project.netlify.app**, in preview
+It currently lives on Netlify at **https://0-project.netlify.app** (production domain: **https://0procentexperiment.com**), in preview
 mode:
 
 - `_headers` sends `X-Robots-Tag: noindex, nofollow` on every response, so the
@@ -149,7 +149,7 @@ anyone who views source. So Stripe hosts the checkout instead.
    under **Invoicing** if you want buyers to get one automatically
 3. Under **After the payment** → **Confirmation page**, choose *Redirect
    customers to your website* and paste:
-   `https://www.0procentexperiment.be/bevestiging.html?session_id={CHECKOUT_SESSION_ID}`
+   `https://0procentexperiment.com/bevestiging.html?session_id={CHECKOUT_SESSION_ID}`
    Stripe swaps in the real session id, and the confirmation page shows it as
    the order reference.
 4. Paste the `https://buy.stripe.com/…` URL into `PRODUCT.paymentLink`
