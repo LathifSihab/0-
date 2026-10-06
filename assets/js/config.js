@@ -11,8 +11,8 @@ window.SITE = {
 	/** Production domain, confirmed by the client (no hyphens). */
 	url: 'https://0procentexperiment.com',
 	locale: 'nl-BE',
-	/** TODO: mailbox still has to be created — see content document §5. */
-	email: 'info@0procentexperiment.be',
+	/** Namecheap Private Email mailbox on the production domain. */
+	email: 'info@0procentexperiment.com',
 	/** TODO: fill in the legal entity details for the legal pages + invoices. */
 	company: {
 		name: 'TODO: juridische naam',
