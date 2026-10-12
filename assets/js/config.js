@@ -32,7 +32,13 @@ window.SITE = {
  * The price block renders a visible "prijs nog te bepalen" state whenever
  * `priceConfirmed` is false, so a fake price can never ship by accident.
  *
- * ⚠️ `paymentLink` IS EMPTY — nothing can be sold yet.
+ * Checkout runs through the client's Plug&Pay page for now (client request,
+ * 2026-10-12). Every [data-buy] button points at `paymentLink`, and Plug&Pay
+ * handles the payment and what happens after it. The thank-you page
+ * (bevestiging.html) is on hold: nothing links to it and _redirects serves a
+ * 404 for it on Netlify. The Stripe notes below describe the earlier plan,
+ * kept for if the shop moves to Stripe later.
+ *
  * This static site has no server, so it cannot talk to the Stripe API (that
  * needs a secret key, which would be readable by anyone who views source).
  * Instead, create a Payment Link in the Stripe dashboard:
@@ -59,8 +65,8 @@ window.PRODUCT = {
 	priceCents: 2650,
 	priceConfirmed: true,
 	currency: 'eur',
-	/** Stripe Payment Link (https://buy.stripe.com/...). Empty = not for sale. */
-	paymentLink: '',
+	/** Hosted checkout every buy button points at. Empty = not for sale. */
+	paymentLink: 'https://start-to-business.plugandpay.com/checkout/0-experiment',
 	features: [
 		'Digitaal werkboek',
 		'30 dagen begeleid experiment',
@@ -93,9 +99,9 @@ window.DEMO = {
 	 * Leave empty to keep the button inert — then drop the second half of
 	 * `note` as well, because it will no longer be true.
 	 */
-	target: 'bevestiging.html',
+	target: '',
 
-	note: 'Dit is een demoversie van de site. De kassa is nog niet open, deze knop loopt gewoon door naar de bevestigingspagina, er wordt niets betaald en niets verstuurd.',
+	note: 'Dit is een demoversie van de site. De kassa is nog niet open, er wordt niets betaald en niets verstuurd.',
 
 	/** Stands in for the price tag. Keep it wordy: never show a fake number. */
 	price: 'Prijs volgt',

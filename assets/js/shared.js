@@ -343,7 +343,7 @@
 			}
 
 			var reason = !link
-				? 'De verkoop staat nog niet open. Zet paymentLink in assets/js/config.js zodra je Stripe Payment Link klaar is.'
+				? 'De verkoop staat nog niet open. Zet paymentLink in assets/js/config.js zodra de checkout-link klaar is.'
 				: 'De prijs staat nog niet vast. Zet priceCents + priceConfirmed in assets/js/config.js.';
 
 			if (isDemo()) {

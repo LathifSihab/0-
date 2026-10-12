@@ -5,3 +5,9 @@
 # the rule, which is exactly the case here.
 /tools/*  /404.html  404!
 
+# The thank-you page is on hold while checkout runs through Plug&Pay, which
+# shows its own confirmation. Nothing links here; delete these two lines to
+# bring it back. (Netlify pretty URLs also serve it without .html.)
+/bevestiging.html  /404.html  404!
+/bevestiging       /404.html  404!
+
