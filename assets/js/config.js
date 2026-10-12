@@ -13,11 +13,11 @@ window.SITE = {
 	locale: 'nl-BE',
 	/** Namecheap Private Email mailbox on the production domain. */
 	email: 'info@0procentexperiment.com',
-	/** TODO: fill in the legal entity details for the legal pages + invoices. */
+	/** Legal entity on the legal pages + invoices (confirmed by the client 2026-10-12). */
 	company: {
-		name: 'TODO: juridische naam',
-		address: 'TODO: adres',
-		vat: 'TODO: BTW-nummer'
+		name: 'STB',
+		address: 'Stationsstraat 40B1, 2570 Duffel',
+		vat: 'BE1015886641'
 	},
 	social: {
 		instagram: '',
