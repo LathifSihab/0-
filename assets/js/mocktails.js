@@ -692,6 +692,26 @@
 	/** An advertiser block every 6 cards: visible, but never the main event. */
 	var AD_AFTER = [5, 17];
 
+	/** Until real partners sign on, the slots advertise the ad space itself. */
+	var ADS = [
+		{
+			label: 'Adverteren',
+			banner: 'assets/img/ads/adverteren-gemberblik',
+			mobileHeight: 1161,
+			href: 'contact.html?onderwerp=adverteren',
+			alt:
+				'Hier kan jouw merk staan. Adverteren bij 0% Experiment? Contacteer ons en ontdek de mogelijkheden. Laten we kennismaken.'
+		},
+		{
+			label: 'Adverteren',
+			banner: 'assets/img/ads/adverteren-aperitief',
+			mobileHeight: 1177,
+			href: 'contact.html?onderwerp=adverteren',
+			alt:
+				'Jouw merk op het menu? Adverteren bij 0% Experiment? Contacteer ons en ontdek de mogelijkheden. Laten we kennismaken.'
+		}
+	];
+
 	var filter = 'Alles';
 
 	function escapeHtml(value) {
@@ -776,12 +796,47 @@
 	 * banner strip. Keep it clearly labelled: the brandbook forbids anything
 	 * that reads as sneaky or salesy.
 	 *
-	 * Wire a real partner by passing brand, claim, href and image.
+	 * Wire a real partner by passing brand, claim, href and image. A finished
+	 * banner (text already in the artwork) goes in as `banner` instead: the
+	 * whole image becomes the link, and `alt` carries the text in the image.
 	 */
 	function adHtml(options) {
 		var opts = options || {};
 		var label = opts.label || 'Partner';
 		var filled = Boolean(opts.brand);
+
+		if (opts.banner) {
+			return (
+				'<aside class="ad ad--banner">' +
+				'<p class="ad__label t-eyebrow">' +
+				escapeHtml(label) +
+				'</p>' +
+				'<a class="ad__banner" href="' +
+				escapeHtml(opts.href) +
+				'">' +
+				'<picture>' +
+				// Phones get a stacked portrait cut, so the text in the artwork stays readable.
+				'<source media="(max-width: 40rem)" srcset="' +
+				escapeHtml(opts.banner) +
+				'-mobiel-600.webp 600w, ' +
+				escapeHtml(opts.banner) +
+				'-mobiel-900.webp 900w" sizes="100vw" width="900" height="' +
+				opts.mobileHeight +
+				'" />' +
+				'<img src="' +
+				escapeHtml(opts.banner) +
+				'-1600.webp" srcset="' +
+				escapeHtml(opts.banner) +
+				'-800.webp 800w, ' +
+				escapeHtml(opts.banner) +
+				'-1600.webp 1600w" sizes="(min-width: 80rem) 1200px, 100vw" alt="' +
+				escapeHtml(opts.alt) +
+				'" width="1600" height="533" loading="lazy" decoding="async" />' +
+				'</picture>' +
+				'</a>' +
+				'</aside>'
+			);
+		}
 
 		if (!filled) {
 			return (
@@ -843,8 +898,9 @@
 		var html = '';
 		visible.forEach(function (mocktail, i) {
 			html += cardHtml(mocktail, MOCKTAILS.indexOf(mocktail));
-			if (filter === 'Alles' && AD_AFTER.indexOf(i) !== -1) {
-				html += adHtml({ label: 'In samenwerking met' });
+			var slot = AD_AFTER.indexOf(i);
+			if (filter === 'Alles' && slot !== -1) {
+				html += adHtml(ADS[slot] || { label: 'In samenwerking met' });
 			}
 		});
 

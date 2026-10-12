@@ -617,6 +617,30 @@
 .ad__label {
 	color: var(--color-accent);
 }
+.ad--banner {
+	background: transparent;
+	border: 0;
+	padding: 0;
+	color: var(--color-ink);
+	gap: 0.6rem;
+}
+.ad--banner .ad__label {
+	color: var(--color-ink-faint);
+}
+.ad__banner {
+	display: block;
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+	transition: transform 0.2s ease;
+}
+.ad__banner:hover {
+	transform: translateY(-2px);
+}
+.ad__banner img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
 .ad--empty .ad__label {
 	color: var(--color-ink-faint);
 }

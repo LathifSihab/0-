@@ -28,6 +28,12 @@
 		var button = form.querySelector('button[type="submit"]');
 		var notice = form.querySelector('[data-contact-notice]');
 
+		// The ad banners on the mocktail page link here with ?onderwerp=adverteren.
+		var subject = form.querySelector('#onderwerp');
+		if (subject && new URLSearchParams(window.location.search).get('onderwerp') === 'adverteren') {
+			subject.value = 'Samenwerking of adverteren';
+		}
+
 		// No endpoint configured: say so plainly rather than pretending to send.
 		if (!window.ENDPOINTS.contact && notice) {
 			notice.hidden = false;
