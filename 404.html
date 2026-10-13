@@ -5,12 +5,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#f5f1e8" />
 		<meta name="robots" content="noindex" />
+		<!-- Netlify serves this page at any unknown URL, also nested ones like
+		     /oud/pad. Without a base, every relative link below would resolve
+		     against /oud/ and the page would load unstyled. -->
+		<base href="/" />
 
 		<title>Pagina niet gevonden · 0% Experiment</title>
 		<meta name="description" content="Deze pagina bestaat niet (meer)." />
 
 		<link rel="icon" href="favicon.png" />
 		<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+		<link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/page-404.css" />
 
@@ -19,9 +25,20 @@
 	</head>
 
 	<body>
-		<a href="#hoofdinhoud" class="c-skip">Naar de inhoud</a>
+		<a href="404.html#hoofdinhoud" class="c-skip">Naar de inhoud</a>
 
-		<div data-site-header></div>
+		<!-- prerender:header · gebakken door tools/prerender.py, niet met de hand aanpassen -->
+		<header class="header">
+			<div class="o-container header__inner"><a href="index.html" class="header__logo" aria-label="0% Experiment · naar de homepage"><img src="assets/img/brand/logo-mark.png" width="45" height="38" style="height: 38px; width: auto;" alt="0% Experiment · nieuwsgierig naar jezelf" decoding="async"><span class="header__wordmark" aria-hidden="true">0% Experiment<span class="header__payoff">Nieuwsgierig naar jezelf.</span></span></a>
+				<nav class="header__nav" aria-label="Hoofdnavigatie"><a href="product.html" class="header__link">Het experiment</a><a href="mocktails.html" class="header__link">Mocktails</a><a href="contact.html" class="header__link">Contact</a><a href="product.html#start" class="c-btn c-btn--primary header__cta">Start het experiment</a>
+				</nav><button class="header__toggle" type="button" aria-expanded="false" aria-controls="mobiel-menu"><span class="sr-only">Menu openen</span><span class="header__bars" aria-hidden="true"></span></button>
+			</div>
+			<div id="mobiel-menu" class="header__mobile" hidden="">
+				<div class="o-container header__mobile-inner"><a href="product.html" class="header__mobile-link">Het experiment</a><a href="mocktails.html" class="header__mobile-link">Mocktails</a><a href="contact.html" class="header__mobile-link">Contact</a><a href="product.html#start" class="c-btn c-btn--primary c-btn--block">Start het experiment</a>
+				</div>
+			</div>
+		</header>
+		<!-- /prerender:header -->
 
 		<main id="hoofdinhoud">
 			<section class="o-section u-surface-creme">
@@ -45,6 +62,33 @@
 			</section>
 		</main>
 
-		<div data-site-footer></div>
+		<!-- prerender:footer · gebakken door tools/prerender.py, niet met de hand aanpassen -->
+		<footer class="footer u-surface-ink">
+			<div class="o-container footer__inner">
+				<div class="footer__brand"><img src="assets/img/brand/logo-mark.png" width="85" height="72" style="height: 72px; width: auto;" alt="0% Experiment · nieuwsgierig naar jezelf" loading="lazy" decoding="async">
+					<p class="footer__wordmark u-font-display">0% Experiment</p>
+					<p class="footer__tagline"><span class="u-accent">Nieuwsgierig</span> naar jezelf.</p>
+				</div>
+				<nav class="footer__cols" aria-label="Footernavigatie">
+					<div>
+						<p class="t-eyebrow footer__heading">Experiment</p><a href="product.html">Het experiment</a><a href="product.html#inhoud">Wat zit erin?</a><a href="product.html#faq">Veelgestelde vragen</a><a href="mocktails.html">Mocktailrecepten</a>
+					</div>
+					<div>
+						<p class="t-eyebrow footer__heading">Contact</p><a href="contact.html">Contactpagina</a><a href="mailto:info@0procentexperiment.com">info@0procentexperiment.com</a>
+					</div>
+					<div>
+						<p class="t-eyebrow footer__heading">Juridisch</p><a href="algemene-voorwaarden.html">Algemene voorwaarden</a><a href="privacybeleid.html">Privacybeleid</a><a href="cookiebeleid.html">Cookiebeleid</a><a href="styleguide.html">Designsysteem</a>
+					</div>
+				</nav>
+			</div>
+			<div class="o-container">
+				<p class="footer__disclaimer">Het 0% Experiment is bedoeld voor educatie, informatie en persoonlijke reflectie en vervangt geen medisch, psychologisch of therapeutisch advies. Wie afhankelijk is van alcohol, ontwenningsverschijnselen ervaart of medische begeleiding nodig heeft bij het stoppen met alcohol, neemt contact op met een arts of gespecialiseerde hulpverlener.</p>
+				<div class="footer__bottom">
+					<p class="footer__legal">© <span class="footer__year">2026</span> 0% Experiment. Alle rechten voorbehouden.</p>
+					<p class="footer__credit" lang="en"><a href="https://drpbuildlab.com" target="_blank" rel="noopener">Built by DRP BuildLab</a></p>
+				</div>
+			</div>
+		</footer>
+		<!-- /prerender:footer -->
 	</body>
 </html>

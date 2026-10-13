@@ -1,0 +1,75 @@
+<!doctype html>
+<!--
+	The social share image (og:image) for every page: 1200 × 630, the size
+	Facebook, LinkedIn, WhatsApp and X all crop to.
+
+	Not part of the site. Rendered to assets/img/brand/og-image.png by
+	`python tools/prerender.py --og`, which screenshots this file at exactly
+	1200 × 630. Edit the copy here, then run that again.
+-->
+<html lang="nl-BE">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<style>
+			html,
+			body {
+				margin: 0;
+				width: 1200px;
+				height: 630px;
+				overflow: hidden;
+			}
+			.og {
+				box-sizing: border-box;
+				width: 1200px;
+				height: 630px;
+				padding: 72px 80px;
+				display: grid;
+				grid-template-columns: 1fr 300px;
+				gap: 56px;
+				align-items: center;
+				background: var(--color-creme);
+			}
+			.og__eyebrow {
+				font-size: 20px;
+				letter-spacing: 0.14em;
+			}
+			.og__title {
+				margin-top: 22px;
+				font-size: 76px;
+				line-height: 1.02;
+				letter-spacing: -0.035em;
+			}
+			.og__sub {
+				margin-top: 30px;
+				font-size: 27px;
+				line-height: 1.4;
+				color: var(--color-ink-muted);
+			}
+			.og__url {
+				margin-top: 34px;
+				font-family: var(--font-display);
+				font-weight: 700;
+				font-size: 22px;
+				color: var(--color-ink);
+			}
+			.og__mark {
+				width: 300px;
+				height: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="og">
+			<div>
+				<p class="t-eyebrow og__eyebrow">30 dagen · één variabele · jij</p>
+				<p class="t-display og__title">
+					We halen <span class="u-mark">één ding</span> weg. En kijken wat er overblijft.
+				</p>
+				<p class="og__sub">Digitaal werkboek: 30 dagen zonder alcohol, als experiment.</p>
+				<p class="og__url">0procentexperiment.com</p>
+			</div>
+			<img class="og__mark" src="../assets/img/brand/logo-mark.png" alt="" />
+		</div>
+	</body>
+</html>

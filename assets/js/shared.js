@@ -4,11 +4,13 @@
  * Injects the header, footer and cookie banner into every page, then wires up
  * the handful of things on this site that actually need JavaScript.
  *
- * The header and footer live here rather than being copy-pasted into nine HTML
- * files, so changing a nav link is a one-line edit. The trade-off: they appear
- * a moment after the rest of the page, and a crawler that does not run JS will
- * not see them. Everything that matters for SEO — headings, copy, links inside
- * the content — is real HTML in the page itself.
+ * The header and footer templates live here, so changing a nav link is a
+ * one-line edit. They are also baked into every HTML file as plain markup by
+ * `python tools/prerender.py`, because search engines and AI crawlers that do
+ * not run JavaScript would otherwise see a page without navigation or footer.
+ * When the baked markup is there, this script only wires it up; when a page
+ * still has the bare `<div data-site-header>` placeholder, it renders it.
+ * After changing a template below, run the prerender script again.
  *
  * Plain <script>, no modules, no build step. Load it with `defer`.
  */
@@ -43,8 +45,24 @@
 	   ------------------------------------------------------------------- */
 	function renderHeader() {
 		var mount = document.querySelector('[data-site-header]');
-		if (!mount) return;
+		if (mount) mount.outerHTML = headerHtml();
 
+		var toggle = document.querySelector('.header__toggle');
+		var panel = document.getElementById('mobiel-menu');
+		if (!toggle || !panel) return;
+		var bars = document.querySelector('.header__bars');
+		var srLabel = toggle.querySelector('.sr-only');
+
+		toggle.addEventListener('click', function () {
+			var open = panel.hidden;
+			panel.hidden = !open;
+			toggle.setAttribute('aria-expanded', String(open));
+			bars.classList.toggle('is-open', open);
+			srLabel.textContent = open ? 'Menu sluiten' : 'Menu openen';
+		});
+	}
+
+	function headerHtml() {
 		var here = currentPage();
 
 		var desktopLinks = NAV.map(function (link) {
@@ -72,7 +90,7 @@
 			);
 		}).join('');
 
-		mount.outerHTML =
+		return (
 			'<header class="header">' +
 			'<div class="o-container header__inner">' +
 			'<a href="index.html" class="header__logo" aria-label="0% Experiment · naar de homepage">' +
@@ -96,31 +114,25 @@
 			'<a href="product.html#start" class="c-btn c-btn--primary c-btn--block">Start het experiment</a>' +
 			'</div>' +
 			'</div>' +
-			'</header>';
-
-		var toggle = document.querySelector('.header__toggle');
-		var panel = document.getElementById('mobiel-menu');
-		var bars = document.querySelector('.header__bars');
-		var srLabel = toggle.querySelector('.sr-only');
-
-		toggle.addEventListener('click', function () {
-			var open = panel.hidden;
-			panel.hidden = !open;
-			toggle.setAttribute('aria-expanded', String(open));
-			bars.classList.toggle('is-open', open);
-			srLabel.textContent = open ? 'Menu sluiten' : 'Menu openen';
-		});
+			'</header>'
+		);
 	}
 
 	/* ─── FOOTER ──────────────────────────────────────────────────────── */
 	function renderFooter() {
 		var mount = document.querySelector('[data-site-footer]');
-		if (!mount) return;
+		if (mount) mount.outerHTML = footerHtml();
 
+		// Baked footers carry the year they were built in; keep it current.
+		var year = document.querySelector('.footer__year');
+		if (year) year.textContent = String(new Date().getFullYear());
+	}
+
+	function footerHtml() {
 		var email = escapeHtml(window.SITE.email);
 		var year = new Date().getFullYear();
 
-		mount.outerHTML =
+		return (
 			'<footer class="footer u-surface-ink">' +
 			'<div class="o-container footer__inner">' +
 			'<div class="footer__brand">' +
@@ -158,13 +170,22 @@
 			'<p class="footer__disclaimer">' +
 			escapeHtml(window.DISCLAIMER) +
 			'</p>' +
-			'<p class="footer__legal">© ' +
+			'<div class="footer__bottom">' +
+			'<p class="footer__legal">© <span class="footer__year">' +
 			year +
-			' ' +
+			'</span> ' +
 			escapeHtml(window.SITE.name) +
 			'. Alle rechten voorbehouden.</p>' +
+			'<p class="footer__credit" lang="en">' +
+			'<a href="' +
+			escapeHtml(window.SITE.builtBy.url) +
+			'" target="_blank" rel="noopener">Built by ' +
+			escapeHtml(window.SITE.builtBy.name) +
+			'</a></p>' +
 			'</div>' +
-			'</footer>';
+			'</div>' +
+			'</footer>'
+		);
 	}
 
 	/* ─── COOKIE BANNER ───────────────────────────────────────────────── */

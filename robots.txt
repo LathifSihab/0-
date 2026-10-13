@@ -1,7 +1,10 @@
+# Every crawler is welcome, search engines and AI assistants alike
+# (Googlebot, Bingbot, GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot…):
+# being quoted in AI answers is part of being found. A summary for language
+# models lives at /llms.txt.
 User-agent: *
 Allow: /
 Disallow: /styleguide.html
 Disallow: /bevestiging.html
 
-# TODO: zet het productiedomein hier zodra het vastligt.
 Sitemap: https://0procentexperiment.com/sitemap.xml

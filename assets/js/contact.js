@@ -2,9 +2,11 @@
  * Contact form.
  *
  * A static site cannot send mail by itself, so the form POSTs to whatever
- * service is configured in `ENDPOINTS.contact` (assets/js/config.js) — Formspree,
- * Basin and Formspark all take exactly this shape. The validation rules below
- * are the same ones the old server action applied.
+ * service is configured in `ENDPOINTS.contact` (assets/js/config.js). It is
+ * set to Netlify Forms, which mails each message to the inbox chosen in the
+ * Netlify dashboard; Formspree, Basin and Formspark take exactly the same
+ * shape if the site ever leaves Netlify. The validation rules below are the
+ * same ones the old server action applied.
  *
  * It sends form-encoded fields rather than JSON, because that is what an
  * ordinary HTML form would have sent and every service accepts it; the Accept
@@ -70,7 +72,7 @@
 
 			if (!window.ENDPOINTS.contact) {
 				showError(
-					'Het formulier is nog niet aangesloten. Zet ENDPOINTS.contact in assets/js/config.js, of mail ons rechtstreeks.'
+					'Het formulier werkt even niet. Mail ons rechtstreeks via ' + window.SITE.email + '.'
 				);
 				return;
 			}
@@ -78,13 +80,18 @@
 			setLoading(true);
 
 			var forms = window.FORMS;
+			var subjectLine = '0% Experiment · ' + (onderwerp || 'nieuw bericht');
 			var fields = {
+				// Netlify Forms routes the post by this name (see contact.html).
+				'form-name': form.getAttribute('name') || 'contact',
 				naam: naam,
 				email: email,
 				onderwerp: onderwerp,
 				bericht: bericht,
-				// Form services show this as the subject line in your inbox.
-				_subject: '0% Experiment · ' + (onderwerp || 'nieuw bericht')
+				// The subject line in the inbox: `subject` for Netlify Forms,
+				// `_subject` for Formspree, Basin and Formspark.
+				subject: subjectLine,
+				_subject: subjectLine
 			};
 
 			fetch(window.ENDPOINTS.contact, {
@@ -105,7 +112,13 @@
 					});
 				})
 				.catch(function (e) {
-					showError(e.message || 'Er ging iets mis.');
+					// Never leave a visitor stuck: the mailbox always works.
+					showError(
+						(e.message || 'Er ging iets mis.') +
+							' Lukt het niet? Mail ons rechtstreeks via ' +
+							window.SITE.email +
+							'.'
+					);
 				})
 				.finally(function () {
 					setLoading(false);

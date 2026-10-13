@@ -59,6 +59,26 @@
 		text-wrap: pretty;
 	}
 
+	/* Dutch compounds ("Verwerkingsverantwoordelijke") and the e-mail address
+	   are wider than a 320px phone at heading size. Hyphenate where the
+	   language allows it (html lang="nl-BE"), and break as a last resort. */
+	h1,
+	h2,
+	h3 {
+		hyphens: auto;
+	}
+	h1,
+	h2,
+	h3,
+	p,
+	dd,
+	li {
+		overflow-wrap: break-word;
+	}
+	a {
+		overflow-wrap: anywhere;
+	}
+
 	a {
 		color: inherit;
 		text-decoration-thickness: 1px;

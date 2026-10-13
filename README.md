@@ -25,13 +25,14 @@ form POST, which needs a real origin.
 
 Upload the folder. There is no build step, so any static host will do.
 
-It currently lives on Netlify at **https://0-project.netlify.app** (production domain: **https://0procentexperiment.com**), in preview
-mode:
+It lives on Netlify at **https://0procentexperiment.com** (live since
+2026-10-06; the old preview URL https://0-project.netlify.app still works and
+its canonical tags point at the real domain):
 
-- `_headers` sends `X-Robots-Tag: noindex, nofollow` on every response, so the
-  preview URL stays out of Google while the pages name a domain that is not
-  live yet. **Delete that line when the real domain goes up** — see
-  [docs/05-domain-and-go-live.md](docs/05-domain-and-go-live.md).
+- `_headers` sets a couple of security headers. The preview-era `noindex`
+  switch is gone.
+- The contact form runs on **Netlify Forms**, so it only sends on Netlify
+  itself. Set-up: [docs/03-contact-form.md](docs/03-contact-form.md).
 - `_redirects` returns a 404 for `/tools/*`. Those files ship with the folder
   but are scaffolding, not site.
 - `404.html` is Netlify's error page for anything unknown.
@@ -77,20 +78,30 @@ docs/
 _headers  _redirects  404.html   Netlify: noindex, /tools/* off, error page
 
 tools/
+  prerender.py         Bakes header, footer, recipes, JSON-LD and llms.txt into the HTML
+  og-image.html        Template for the social share image (prerender.py --og)
   go-live.ps1          Windows: runs the wizard under Git Bash. Start here.
   go-live.sh           The wizard itself — a walkthrough of everything below
   set-config.mjs       Writes one value into assets/js/config.js (used by go-live.sh)
   check-integration.py Drives the real pages against fake providers
 
-fonts/  assets/img/brand/  favicon.png  apple-touch-icon.png  robots.txt  sitemap.xml
+fonts/  assets/img/brand/  favicon.png  apple-touch-icon.png  robots.txt  sitemap.xml  llms.txt
 ```
 
 `tools/` is for you, not for the server — there is no need to upload it.
 
-The header and footer are not copy-pasted into all nine pages. They are built
-once in `assets/js/shared.js` and injected into the `<div data-site-header>` and
-`<div data-site-footer>` placeholders. Change a nav link there and it changes
-everywhere.
+The header and footer are written once, as templates in `assets/js/shared.js`.
+They are also baked into every page as plain HTML, together with the 30 recipe
+cards, the JSON-LD structured data and `llms.txt`, because AI crawlers and link
+previews do not run JavaScript. After changing a nav link, a recipe, the price,
+the company details or the FAQ, run:
+
+```bash
+python tools/prerender.py        # add --og to redraw the share image too
+```
+
+Baked blocks sit between `<!-- prerender:… -->` markers; edit the source, not
+the block, because the next run overwrites it.
 
 ## Before you go live
 
@@ -195,12 +206,12 @@ plainly that nothing was paid instead of promising a mail that is not coming.
 
 A static site cannot send mail, so both forms POST to a service instead.
 
-**Contact** — Formspree, Basin and Formspark all accept exactly what the form
-sends (ordinary form-encoded fields, `Accept: application/json`) and all have a
-free tier. Paste the endpoint into `ENDPOINTS.contact`, point the service at
-your own inbox, and turn its spam filter on; the form already carries a
-honeypot field. If the service rejects a submission, its own message is what
-the visitor sees.
+**Contact** — wired to Netlify Forms (`ENDPOINTS.contact: '/'`). Netlify
+stores each message and e-mails it to the inbox set in its dashboard; the two
+switches that takes are in [docs/03-contact-form.md](docs/03-contact-form.md).
+Off Netlify, Formspree, Basin and Formspark accept exactly the same post: paste
+their endpoint into `ENDPOINTS.contact` instead. If sending fails, the visitor
+sees the reason plus the info@ address.
 
 **Newsletter** — providers come in two camps, and `NEWSLETTER.mode` picks the
 one you are dealing with:

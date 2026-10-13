@@ -689,6 +689,10 @@
 		}
 	];
 
+	// tools/prerender.py reads the recipes from here to write the Recipe
+	// structured data into mocktails.html.
+	window.MOCKTAILS = MOCKTAILS;
+
 	/** An advertiser block every 6 cards: visible, but never the main event. */
 	var AD_AFTER = [5, 17];
 
@@ -749,7 +753,9 @@
 			.join('');
 
 		return (
-			'<article class="mock c-card c-card--interactive">' +
+			'<article class="mock c-card c-card--interactive" id="' +
+			escapeHtml(mocktail.slug) +
+			'">' +
 			'<div class="mock__media">' +
 			media +
 			'<span class="c-tag mock__cat">' +
@@ -927,7 +933,10 @@
 			});
 		});
 
-		render();
+		// The cards are baked into mocktails.html by tools/prerender.py, so
+		// crawlers can read the recipes. Only render when they are missing.
+		var grid = document.querySelector('[data-mocktail-grid]');
+		if (grid && !grid.querySelector('.mock')) render();
 	}
 
 	if (document.readyState === 'loading') {

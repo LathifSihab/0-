@@ -201,10 +201,26 @@
 	max-width: 52rem;
 	color: color-mix(in srgb, var(--color-creme) 62%, transparent);
 }
-.footer__legal {
+.footer__bottom {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.75rem 2rem;
 	margin-top: 1.5rem;
+}
+.footer__legal,
+.footer__credit {
 	font-size: 0.8125rem;
-	color: color-mix(in srgb, var(--color-creme) 50%, transparent);
+	color: color-mix(in srgb, var(--color-creme) 62%, transparent);
+}
+.footer__credit a {
+	text-decoration: none;
+	border-bottom: 1px solid color-mix(in srgb, var(--color-creme) 30%, transparent);
+	transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.footer__credit a:hover {
+	color: var(--color-creme);
+	border-bottom-color: var(--color-accent);
 }
 
 @media (min-width: 55rem) {

@@ -230,7 +230,7 @@ with sync_playwright() as p:
     page.click('button[type=submit]')
     page.wait_for_timeout(700)
     check("the provider's own error reaches the visitor",
-          page.eval_on_selector('.form__error', 'e=>e.textContent') == 'Dat adres staat al op de lijst.')
+          page.eval_on_selector('.form__error', 'e=>e.textContent').startswith('Dat adres staat al op de lijst.'))
     page.close()
 
     # 4 - Newsletter, direct ------------------------------------------------

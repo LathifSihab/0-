@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Public pages only — the styleguide and the confirmation page stay out.
-	This used to be generated per request; as a static site it is a plain file.
-	Add a <url> here whenever you add a page, and update the domain once it is
-	confirmed in assets/js/config.js.
+	Add a <url> here whenever you add a page, and move <lastmod> to the day
+	a page's content really changed (not on every deploy: Google stops
+	trusting a lastmod that always says today).
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	<url><loc>https://0procentexperiment.com/</loc></url>
-	<url><loc>https://0procentexperiment.com/product.html</loc></url>
-	<url><loc>https://0procentexperiment.com/mocktails.html</loc></url>
-	<url><loc>https://0procentexperiment.com/contact.html</loc></url>
-	<url><loc>https://0procentexperiment.com/algemene-voorwaarden.html</loc></url>
-	<url><loc>https://0procentexperiment.com/privacybeleid.html</loc></url>
-	<url><loc>https://0procentexperiment.com/cookiebeleid.html</loc></url>
+	<url><loc>https://0procentexperiment.com/</loc><lastmod>2026-10-13</lastmod></url>
+	<url><loc>https://0procentexperiment.com/product.html</loc><lastmod>2026-10-13</lastmod></url>
+	<url><loc>https://0procentexperiment.com/mocktails.html</loc><lastmod>2026-10-13</lastmod></url>
+	<url><loc>https://0procentexperiment.com/contact.html</loc><lastmod>2026-10-13</lastmod></url>
+	<url><loc>https://0procentexperiment.com/algemene-voorwaarden.html</loc><lastmod>2026-10-12</lastmod></url>
+	<url><loc>https://0procentexperiment.com/privacybeleid.html</loc><lastmod>2026-10-13</lastmod></url>
+	<url><loc>https://0procentexperiment.com/cookiebeleid.html</loc><lastmod>2026-10-12</lastmod></url>
 </urlset>

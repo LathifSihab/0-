@@ -22,6 +22,11 @@ window.SITE = {
 	social: {
 		instagram: '',
 		facebook: ''
+	},
+	/** Credit line at the bottom of the footer. */
+	builtBy: {
+		name: 'DRP BuildLab',
+		url: 'https://drpbuildlab.com'
 	}
 };
 
@@ -156,8 +161,15 @@ window.isMockCheckout = function isMockCheckout() {
  * Both forms need somewhere to POST to, because a static site cannot send
  * mail by itself.
  *
- * CONTACT — any form service that accepts JSON and allows cross-origin
- * requests from the browser. All three below do, on their free tier:
+ * CONTACT — Netlify Forms (since 2026-10-13). '/' is right: Netlify catches
+ * a form POST on any path of the site, as long as the body names the form
+ * (`form-name=contact`, which contact.js sends). Netlify then e-mails each
+ * message to the address set under Forms → Form notifications in the Netlify
+ * dashboard; see docs/03-contact-form.md. Only works on Netlify itself: on
+ * localhost the POST fails and the form says so.
+ *
+ * If the site ever leaves Netlify, any form service that accepts a
+ * cross-origin POST works too. All three below do, on their free tier:
  *   · Formspree  — https://formspree.io   (endpoint: https://formspree.io/f/xxxxxxx)
  *   · Basin      — https://usebasin.com   (endpoint: https://usebasin.com/f/xxxxxxx)
  *   · Formspark  — https://formspark.io   (endpoint: https://submit-form.com/xxxxxxx)
@@ -172,7 +184,7 @@ window.isMockCheckout = function isMockCheckout() {
  * message the way a dead endpoint would.
  */
 window.ENDPOINTS = {
-	contact: '',
+	contact: '/',
 	newsletter: ''
 };
 
