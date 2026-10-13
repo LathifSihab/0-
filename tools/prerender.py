@@ -242,6 +242,29 @@ def graph_for(name, facts):
                 'availability': 'https://schema.org/InStock',
                 'itemCondition': 'https://schema.org/NewCondition',
                 'seller': org_ref,
+                # A digital file, mailed right after payment (terms §4): no
+                # shipping cost, no handling or transit time.
+                'shippingDetails': {
+                    '@type': 'OfferShippingDetails',
+                    'shippingRate': {'@type': 'MonetaryAmount', 'value': 0,
+                                     'currency': product['currency'].upper()},
+                    'shippingDestination': {'@type': 'DefinedRegion', 'addressCountry': 'BE'},
+                    'deliveryTime': {
+                        '@type': 'ShippingDeliveryTime',
+                        'handlingTime': {'@type': 'QuantitativeValue', 'minValue': 0,
+                                         'maxValue': 0, 'unitCode': 'DAY'},
+                        'transitTime': {'@type': 'QuantitativeValue', 'minValue': 0,
+                                        'maxValue': 0, 'unitCode': 'DAY'},
+                    },
+                },
+                # Digital content: the right of withdrawal ends once delivery
+                # starts with the buyer's consent (terms §5).
+                'hasMerchantReturnPolicy': {
+                    '@type': 'MerchantReturnPolicy',
+                    'applicableCountry': 'BE',
+                    'returnPolicyCategory': 'https://schema.org/MerchantReturnNotPermitted',
+                    'merchantReturnLink': absolute(site, 'algemene-voorwaarden.html#herroepingsrecht'),
+                },
             }
         graph.append(item)
         webpage['about'] = {'@id': url + '#product'}
@@ -290,7 +313,10 @@ def recipe(site, page_url, m, org_ref):
         'totalTime': 'PT%dM' % m['minutes'],
         'recipeYield': '1 glas',
         'recipeIngredient': m['ingredients'],
-        'recipeInstructions': [{'@type': 'HowToStep', 'text': s} for s in m['steps']],
+        'recipeInstructions': [
+            {'@type': 'HowToStep', 'text': s, 'url': '%s#%s-stap-%d' % (page_url, m['slug'], i + 1)}
+            for i, s in enumerate(m['steps'])
+        ],
     }
     if m.get('image'):
         item['image'] = absolute(site, m['image'])

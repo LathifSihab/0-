@@ -208,6 +208,39 @@
 						"itemCondition": "https://schema.org/NewCondition",
 						"seller": {
 							"@id": "https://0procentexperiment.com/#organisatie"
+						},
+						"shippingDetails": {
+							"@type": "OfferShippingDetails",
+							"shippingRate": {
+								"@type": "MonetaryAmount",
+								"value": 0,
+								"currency": "EUR"
+							},
+							"shippingDestination": {
+								"@type": "DefinedRegion",
+								"addressCountry": "BE"
+							},
+							"deliveryTime": {
+								"@type": "ShippingDeliveryTime",
+								"handlingTime": {
+									"@type": "QuantitativeValue",
+									"minValue": 0,
+									"maxValue": 0,
+									"unitCode": "DAY"
+								},
+								"transitTime": {
+									"@type": "QuantitativeValue",
+									"minValue": 0,
+									"maxValue": 0,
+									"unitCode": "DAY"
+								}
+							}
+						},
+						"hasMerchantReturnPolicy": {
+							"@type": "MerchantReturnPolicy",
+							"applicableCountry": "BE",
+							"returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+							"merchantReturnLink": "https://0procentexperiment.com/algemene-voorwaarden.html#herroepingsrecht"
 						}
 					}
 				}

@@ -746,9 +746,12 @@
 			})
 			.join('');
 
+		// Each step gets an anchor, so the Recipe structured data can link to it.
 		var steps = mocktail.steps
-			.map(function (item) {
-				return '<li>' + escapeHtml(item) + '</li>';
+			.map(function (item, i) {
+				return (
+					'<li id="' + escapeHtml(mocktail.slug) + '-stap-' + (i + 1) + '">' + escapeHtml(item) + '</li>'
+				);
 			})
 			.join('');
 
