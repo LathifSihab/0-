@@ -193,14 +193,20 @@
 	   SITE.metaPixelId. Only called once the visitor has chosen "Oké voor mij",
 	   and only on the production domain. Meta's <noscript> image fallback is
 	   left out on purpose: it fires on load, before anyone could say yes.
+	   Guarded by our own flag, not by `window.fbq`: pixel-helper browser
+	   extensions define `fbq` before this runs, and the pixel would then
+	   never start.
 	   ------------------------------------------------------------------- */
+	var metaPixelLoaded = false;
+
 	function loadMetaPixel() {
 		var site = window.SITE || {};
 		var id = site.metaPixelId;
-		if (!id || window.fbq) return;
+		if (!id || metaPixelLoaded) return;
 
 		var productionHost = String(site.url || '').replace(/^https?:\/\//, '').replace(/\/.*$/, '');
 		if (window.location.hostname.replace(/^www\./, '') !== productionHost) return;
+		metaPixelLoaded = true;
 
 		/* eslint-disable */
 		!function(f,b,e,v,n,t,s)
