@@ -23,6 +23,16 @@ window.SITE = {
 		instagram: '',
 		facebook: ''
 	},
+	/**
+	 * Meta Pixel for the ad campaigns (ID from the client's ads team,
+	 * 2026-10-15). It loads only after the visitor picks "Oké voor mij" in the
+	 * cookie banner, and only on the production domain above, so local and
+	 * preview visits stay out of the ad data. Empty = no pixel.
+	 *
+	 * The Plug&Pay checkout loads its own copy of the pixel, set in the
+	 * Plug&Pay dashboard. It must use this same ID, or the funnel splits in two.
+	 */
+	metaPixelId: '2176990836222509',
 	/** Credit line at the bottom of the footer. */
 	builtBy: {
 		name: 'DRP BuildLab',

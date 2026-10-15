@@ -188,6 +188,34 @@
 		);
 	}
 
+	/* ─── META PIXEL ──────────────────────────────────────────────────────
+	   Meta's base code as Meta hands it out, with the ID read from
+	   SITE.metaPixelId. Only called once the visitor has chosen "Oké voor mij",
+	   and only on the production domain. Meta's <noscript> image fallback is
+	   left out on purpose: it fires on load, before anyone could say yes.
+	   ------------------------------------------------------------------- */
+	function loadMetaPixel() {
+		var site = window.SITE || {};
+		var id = site.metaPixelId;
+		if (!id || window.fbq) return;
+
+		var productionHost = String(site.url || '').replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+		if (window.location.hostname.replace(/^www\./, '') !== productionHost) return;
+
+		/* eslint-disable */
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window, document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		/* eslint-enable */
+		window.fbq('init', id);
+		window.fbq('track', 'PageView');
+	}
+
 	/* ─── COOKIE BANNER ───────────────────────────────────────────────── */
 	function renderCookieBanner() {
 		var KEY = '0pct-cookie-consent';
@@ -199,7 +227,17 @@
 			// Storage blocked (private window, strict settings). Stay silent.
 			return;
 		}
-		if (stored) return;
+		if (stored) {
+			// Already answered on an earlier page: honour it without asking again.
+			var choice = null;
+			try {
+				choice = JSON.parse(stored).choice;
+			} catch (e) {
+				/* ignore */
+			}
+			if (choice === 'all') loadMetaPixel();
+			return;
+		}
 
 		var el = document.createElement('div');
 		el.className = 'cookie';
@@ -240,7 +278,7 @@
 				/* ignore */
 			}
 			el.remove();
-			// TODO: hook your analytics / marketing scripts to choice === 'all'.
+			if (button.dataset.choice === 'all') loadMetaPixel();
 		});
 	}
 
